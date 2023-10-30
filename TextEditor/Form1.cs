@@ -6,6 +6,7 @@ namespace TextEditor
         {
             InitializeComponent();
           //Получение из origin
+          //Отменна
         }
 
         private void Main_Form_FormClosing(object sender, FormClosingEventArgs e)
