@@ -12,5 +12,32 @@ namespace TextEditor
         {
 
         }
+
+        //Organising searches in a document -> Yan
+        int start_pos_search = 0;
+        private void toolStripButton_search_Click(object sender, EventArgs e)
+        {
+            string find_str = toolStripTextBox_search.Text;
+            int end_pos_search = richTextBox_Main.TextLength;
+
+            if (toolStripTextBox_search.Text == "")
+            {
+                MessageBox.Show("Please enter string for Search!", "Text Editor", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else if (richTextBox_Main.TextLength == 0)
+            {
+                MessageBox.Show("The document is empty! Nothing to find.", "Text Editor", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else if (start_pos_search < end_pos_search)
+            {
+                start_pos_search = richTextBox_Main.Find(find_str, start_pos_search, richTextBox_Main.Text.Length, RichTextBoxFinds.MatchCase) + 1;
+
+                if (start_pos_search == 0) MessageBox.Show("Position not found!", "Text Editor", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                else
+                {
+                    richTextBox_Main.ScrollToCaret();
+                }
+            }
+        }
     }
 }
