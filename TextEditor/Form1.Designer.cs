@@ -32,6 +32,12 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main_Form));
             menuStrip_en = new MenuStrip();
             toolStrip1 = new ToolStrip();
+            toolStripButton_New_Doc = new ToolStripButton();
+            toolStripButton_Open = new ToolStripButton();
+            toolStripSeparator1 = new ToolStripSeparator();
+            toolStripButton_Save = new ToolStripButton();
+            toolStripButton_SaveAs = new ToolStripButton();
+            toolStripSeparator2 = new ToolStripSeparator();
             toolStripTextBox_search = new ToolStripTextBox();
             toolStripButton_search = new ToolStripButton();
             richTextBox_Main = new RichTextBox();
@@ -58,13 +64,63 @@
             toolStrip1.AutoSize = false;
             toolStrip1.BackColor = SystemColors.ControlLight;
             toolStrip1.ImageScalingSize = new Size(24, 24);
-            toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripTextBox_search, toolStripButton_search });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripButton_New_Doc, toolStripButton_Open, toolStripSeparator1, toolStripButton_Save, toolStripButton_SaveAs, toolStripSeparator2, toolStripTextBox_search, toolStripButton_search });
             toolStrip1.Location = new Point(0, 24);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.Size = new Size(926, 40);
             toolStrip1.Stretch = true;
             toolStrip1.TabIndex = 1;
             toolStrip1.Text = "toolStrip1";
+            // 
+            // toolStripButton_New_Doc
+            // 
+            toolStripButton_New_Doc.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            toolStripButton_New_Doc.Image = Properties.Resources._new;
+            toolStripButton_New_Doc.ImageTransparentColor = Color.Magenta;
+            toolStripButton_New_Doc.Name = "toolStripButton_New_Doc";
+            toolStripButton_New_Doc.Size = new Size(28, 37);
+            toolStripButton_New_Doc.Text = "New_Doc";
+            toolStripButton_New_Doc.Click += toolStripButton_New_Doc_Click;
+            // 
+            // toolStripButton_Open
+            // 
+            toolStripButton_Open.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            toolStripButton_Open.Image = Properties.Resources.open;
+            toolStripButton_Open.ImageTransparentColor = Color.Magenta;
+            toolStripButton_Open.Name = "toolStripButton_Open";
+            toolStripButton_Open.Size = new Size(28, 37);
+            toolStripButton_Open.Text = "Open";
+            toolStripButton_Open.Click += toolStripButton_Open_Click;
+            // 
+            // toolStripSeparator1
+            // 
+            toolStripSeparator1.Name = "toolStripSeparator1";
+            toolStripSeparator1.Size = new Size(6, 40);
+            // 
+            // toolStripButton_Save
+            // 
+            toolStripButton_Save.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            toolStripButton_Save.Image = Properties.Resources.Save;
+            toolStripButton_Save.ImageTransparentColor = Color.Magenta;
+            toolStripButton_Save.Name = "toolStripButton_Save";
+            toolStripButton_Save.Size = new Size(28, 37);
+            toolStripButton_Save.Text = "Save";
+            toolStripButton_Save.Click += toolStripButton_Save_Click;
+            // 
+            // toolStripButton_SaveAs
+            // 
+            toolStripButton_SaveAs.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            toolStripButton_SaveAs.Image = Properties.Resources.save_as;
+            toolStripButton_SaveAs.ImageTransparentColor = Color.Magenta;
+            toolStripButton_SaveAs.Name = "toolStripButton_SaveAs";
+            toolStripButton_SaveAs.Size = new Size(28, 37);
+            toolStripButton_SaveAs.Text = "Save As";
+            toolStripButton_SaveAs.Click += toolStripButton_SaveAs_Click;
+            // 
+            // toolStripSeparator2
+            // 
+            toolStripSeparator2.Name = "toolStripSeparator2";
+            toolStripSeparator2.Size = new Size(6, 40);
             // 
             // toolStripTextBox_search
             // 
@@ -152,5 +208,11 @@
         private TrackBar trackBar_Zoom;
         private ToolStripTextBox toolStripTextBox_search;
         private ToolStripButton toolStripButton_search;
+        private ToolStripButton toolStripButton_New_Doc;
+        private ToolStripButton toolStripButton_Open;
+        private ToolStripSeparator toolStripSeparator1;
+        private ToolStripButton toolStripButton_Save;
+        private ToolStripButton toolStripButton_SaveAs;
+        private ToolStripSeparator toolStripSeparator2;
     }
 }

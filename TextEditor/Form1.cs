@@ -39,5 +39,26 @@ namespace TextEditor
                 }
             }
         }
+
+
+        private void toolStripButton_New_Doc_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripButton_Open_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripButton_Save_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripButton_SaveAs_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
