@@ -64,6 +64,9 @@
             contextMenuStrip_richTXTbox = new ContextMenuStrip(components);
             statusStrip1 = new StatusStrip();
             trackBar_Zoom = new TrackBar();
+            toolStripButton_Undo = new ToolStripButton();
+            toolStripButton_Redo = new ToolStripButton();
+            toolStripSeparator9 = new ToolStripSeparator();
             toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)trackBar_Zoom).BeginInit();
             SuspendLayout();
@@ -75,7 +78,7 @@
             menuStrip_en.GripStyle = ToolStripGripStyle.Visible;
             menuStrip_en.Location = new Point(0, 0);
             menuStrip_en.Name = "menuStrip_en";
-            menuStrip_en.Size = new Size(926, 24);
+            menuStrip_en.Size = new Size(929, 24);
             menuStrip_en.TabIndex = 0;
             menuStrip_en.Text = "menuStrip1";
             // 
@@ -84,10 +87,10 @@
             toolStrip1.AutoSize = false;
             toolStrip1.BackColor = SystemColors.ControlLight;
             toolStrip1.ImageScalingSize = new Size(24, 24);
-            toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripButton_New_Doc, toolStripButton_Open, toolStripSeparator1, toolStripButton_Save, toolStripButton_SaveAs, toolStripSeparator2, toolStripComboBox_Font, toolStripSeparator3, toolStripComboBox_Size, toolStripSeparator4, toolStripButt_Bold, toolStripButt_Italic, StripButt_Underline, toolStripButt_Strike, toolStripSeparator5, toolStripButt_FrontColor, toolStripButt_BackFrontColor, toolStripSeparator6, toolStripButton_Copy, toolStripButton_Cut, toolStripSeparator7, toolStripButton_Paste, toolStripButton_PasteAsText, toolStripSeparator10, toolStripButton_clear_all, toolStripTextBox_search, toolStripButton_search, toolStripSeparator8 });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripButton_New_Doc, toolStripButton_Open, toolStripSeparator1, toolStripButton_Save, toolStripButton_SaveAs, toolStripSeparator2, toolStripComboBox_Font, toolStripSeparator3, toolStripComboBox_Size, toolStripSeparator4, toolStripButt_Bold, toolStripButt_Italic, StripButt_Underline, toolStripButt_Strike, toolStripSeparator5, toolStripButt_FrontColor, toolStripButt_BackFrontColor, toolStripSeparator6, toolStripButton_Undo, toolStripButton_Redo, toolStripSeparator9, toolStripButton_Copy, toolStripButton_Cut, toolStripSeparator7, toolStripButton_Paste, toolStripButton_PasteAsText, toolStripSeparator10, toolStripButton_clear_all, toolStripTextBox_search, toolStripButton_search, toolStripSeparator8 });
             toolStrip1.Location = new Point(0, 24);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(926, 40);
+            toolStrip1.Size = new Size(929, 40);
             toolStrip1.Stretch = true;
             toolStrip1.TabIndex = 1;
             toolStrip1.Text = "toolStrip1";
@@ -309,7 +312,7 @@
             toolStripButton_search.Image = Properties.Resources.search;
             toolStripButton_search.ImageTransparentColor = Color.Magenta;
             toolStripButton_search.Name = "toolStripButton_search";
-            toolStripButton_search.Size = new Size(28, 37);
+            toolStripButton_search.Size = new Size(28, 28);
             toolStripButton_search.Text = "Search";
             toolStripButton_search.Click += toolStripButton_search_Click;
             // 
@@ -325,7 +328,7 @@
             richTextBox_Main.Location = new Point(0, 67);
             richTextBox_Main.Name = "richTextBox_Main";
             richTextBox_Main.ScrollBars = RichTextBoxScrollBars.ForcedBoth;
-            richTextBox_Main.Size = new Size(875, 518);
+            richTextBox_Main.Size = new Size(878, 518);
             richTextBox_Main.TabIndex = 0;
             richTextBox_Main.Text = "";
             // 
@@ -341,7 +344,7 @@
             statusStrip1.BackColor = SystemColors.ControlLight;
             statusStrip1.Location = new Point(0, 582);
             statusStrip1.Name = "statusStrip1";
-            statusStrip1.Size = new Size(926, 22);
+            statusStrip1.Size = new Size(929, 22);
             statusStrip1.TabIndex = 3;
             statusStrip1.Text = "statusStrip1";
             // 
@@ -349,18 +352,43 @@
             // 
             trackBar_Zoom.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             trackBar_Zoom.LargeChange = 1;
-            trackBar_Zoom.Location = new Point(881, 67);
+            trackBar_Zoom.Location = new Point(884, 67);
             trackBar_Zoom.Name = "trackBar_Zoom";
             trackBar_Zoom.Orientation = Orientation.Vertical;
             trackBar_Zoom.Size = new Size(45, 512);
             trackBar_Zoom.TabIndex = 4;
             trackBar_Zoom.TickStyle = TickStyle.TopLeft;
             // 
+            // toolStripButton_Undo
+            // 
+            toolStripButton_Undo.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            toolStripButton_Undo.Image = Properties.Resources.cancel;
+            toolStripButton_Undo.ImageTransparentColor = Color.Magenta;
+            toolStripButton_Undo.Name = "toolStripButton_Undo";
+            toolStripButton_Undo.Size = new Size(28, 37);
+            toolStripButton_Undo.Text = "Undo";
+            toolStripButton_Undo.Click += toolStripButton_Undo_Click;
+            // 
+            // toolStripButton_Redo
+            // 
+            toolStripButton_Redo.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            toolStripButton_Redo.Image = Properties.Resources.back;
+            toolStripButton_Redo.ImageTransparentColor = Color.Magenta;
+            toolStripButton_Redo.Name = "toolStripButton_Redo";
+            toolStripButton_Redo.Size = new Size(28, 37);
+            toolStripButton_Redo.Text = "Redo";
+            toolStripButton_Redo.Click += toolStripButton_Redo_Click;
+            // 
+            // toolStripSeparator9
+            // 
+            toolStripSeparator9.Name = "toolStripSeparator9";
+            toolStripSeparator9.Size = new Size(6, 40);
+            // 
             // Main_Form
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(926, 604);
+            ClientSize = new Size(929, 604);
             Controls.Add(trackBar_Zoom);
             Controls.Add(statusStrip1);
             Controls.Add(richTextBox_Main);
@@ -414,5 +442,8 @@
         private ToolStripButton toolStripButton_PasteAsText;
         private ToolStripSeparator toolStripSeparator10;
         private ToolStripButton toolStripButton_clear_all;
+        private ToolStripButton toolStripButton_Undo;
+        private ToolStripButton toolStripButton_Redo;
+        private ToolStripSeparator toolStripSeparator9;
     }
 }

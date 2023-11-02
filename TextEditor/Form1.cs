@@ -40,20 +40,98 @@ namespace TextEditor
             }
         }
 
+        string doc_name = @"";
+
+        public void OpenDocument()
+        {
+            using (var dlg = new OpenFileDialog())
+            {
+                dlg.Filter = "Supported files (*.rtf, *.txt)|*.rtf;*.txt|" + "All files (*.*)|*.*";
+                if (dlg.ShowDialog() == DialogResult.OK)
+                {
+                    OpenDocument(dlg.FileName);
+                }
+            }
+        }
+
+        public void OpenDocument(string fileName)
+        {
+            if (!PromtToSaveDocument())
+                return;
+
+            LoadDocument(fileName);
+            doc_name = fileName;
+            this.Text = "TextEditor -" + fileName;
+        }
+
+        private void LoadDocument(string _path)
+        {
+            RichTextBoxStreamType streamType = _path.EndsWith(".rtf") ? RichTextBoxStreamType.RichText : RichTextBoxStreamType.PlainText;
+            try
+            {
+                richTextBox_Main.LoadFile(_path, streamType);
+                ControlTextBoxSelectionChanged();
+            }
+            catch (IOException e) { MessageBox.Show(e.Message); }
+        }
+
+        private void ControlTextBoxSelectionChanged()
+        {
+            this.richTextBox_Main.SelectAll();
+            this.richTextBox_Main.Select(0, 0);
+            this.richTextBox_Main.Modified = false;
+        }
+
+        public bool SaveDocument() => SaveDocument(doc_name);
+
+        public bool SaveDocument(string _file_name)
+        {
+            if (string.IsNullOrEmpty(_file_name)) //Проверяем есть ли имя у открытого файла, нет - вызываем сохранение
+            {
+                return SaveDocumentAs();
+            }
+            try
+            {
+                RichTextBoxStreamType streamType = _file_name.EndsWith(".rtf") ? RichTextBoxStreamType.RichText : RichTextBoxStreamType.PlainText;
+                richTextBox_Main.SaveFile(_file_name, streamType);
+                richTextBox_Main.Modified = false;
+            }
+            catch (IOException e) { MessageBox.Show(e.Message); }
+
+            return true;
+        }
+        public bool SaveDocumentAs()
+        {
+            return false;
+           
+        }
+
+        private bool PromtToSaveDocument()
+        {
+            if (!richTextBox_Main.Modified) return true;
+            DialogResult dialog = MessageBox.Show("Do you want to save '" + doc_name + "'?", "TxT - Quedtion", MessageBoxButtons.YesNoCancel);
+            switch (dialog)
+            {
+                case DialogResult.Yes: return SaveDocument();
+                case DialogResult.No: return true;
+                case DialogResult.Cancel: return false;
+            }
+            throw new ApplicationException();
+        }
 
         private void toolStripButton_New_Doc_Click(object sender, EventArgs e)
         {
-
+           
         }
 
         private void toolStripButton_Open_Click(object sender, EventArgs e)
         {
-
+            OpenDocument();
         }
 
         private void toolStripButton_Save_Click(object sender, EventArgs e)
         {
-
+            SaveDocument();
         }
 
         private void toolStripButton_SaveAs_Click(object sender, EventArgs e)
@@ -117,6 +195,16 @@ namespace TextEditor
         }
 
         private void toolStripButton_clear_all_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripButton_Undo_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripButton_Redo_Click(object sender, EventArgs e)
         {
 
         }
