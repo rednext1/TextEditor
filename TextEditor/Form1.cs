@@ -60,5 +60,65 @@ namespace TextEditor
         {
 
         }
+
+        private void toolStripComboBox_Font_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripComboBox_Size_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripButt_Bold_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void StripButt_Underline_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripButt_Strike_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripButt_FrontColor_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripButt_BackFrontColor_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void copyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pasteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pasteAsTextToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripButton_clear_all_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
