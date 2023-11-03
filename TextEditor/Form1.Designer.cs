@@ -31,6 +31,7 @@
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main_Form));
             menuStrip_en = new MenuStrip();
+            recentlyFileToolStripMenuItem = new ToolStripMenuItem();
             toolStrip1 = new ToolStrip();
             toolStripButton_New_Doc = new ToolStripButton();
             toolStripButton_Open = new ToolStripButton();
@@ -66,10 +67,12 @@
             richTextBox_Main = new RichTextBox();
             contextMenuStrip_richTXTbox = new ContextMenuStrip(components);
             statusStrip1 = new StatusStrip();
+            toolStripStatusLabel_CursorPosition = new ToolStripStatusLabel();
             trackBar_Zoom = new TrackBar();
-            recentlyFileToolStripMenuItem = new ToolStripMenuItem();
+            toolStripStatusLabel_Rec = new ToolStripStatusLabel();
             menuStrip_en.SuspendLayout();
             toolStrip1.SuspendLayout();
+            statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)trackBar_Zoom).BeginInit();
             SuspendLayout();
             // 
@@ -84,6 +87,12 @@
             menuStrip_en.Size = new Size(929, 24);
             menuStrip_en.TabIndex = 0;
             menuStrip_en.Text = "menuStrip1";
+            // 
+            // recentlyFileToolStripMenuItem
+            // 
+            recentlyFileToolStripMenuItem.Name = "recentlyFileToolStripMenuItem";
+            recentlyFileToolStripMenuItem.Size = new Size(85, 20);
+            recentlyFileToolStripMenuItem.Text = "Re&cently File";
             // 
             // toolStrip1
             // 
@@ -370,11 +379,18 @@
             // 
             statusStrip1.AutoSize = false;
             statusStrip1.BackColor = SystemColors.ControlLight;
+            statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel_CursorPosition, toolStripStatusLabel_Rec });
             statusStrip1.Location = new Point(0, 582);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Size = new Size(929, 22);
             statusStrip1.TabIndex = 3;
             statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel_CursorPosition
+            // 
+            toolStripStatusLabel_CursorPosition.Name = "toolStripStatusLabel_CursorPosition";
+            toolStripStatusLabel_CursorPosition.Size = new Size(88, 17);
+            toolStripStatusLabel_CursorPosition.Text = "Cursor Position";
             // 
             // trackBar_Zoom
             // 
@@ -387,11 +403,13 @@
             trackBar_Zoom.TabIndex = 4;
             trackBar_Zoom.TickStyle = TickStyle.TopLeft;
             // 
-            // recentlyFileToolStripMenuItem
+            // toolStripStatusLabel_Rec
             // 
-            recentlyFileToolStripMenuItem.Name = "recentlyFileToolStripMenuItem";
-            recentlyFileToolStripMenuItem.Size = new Size(85, 20);
-            recentlyFileToolStripMenuItem.Text = "Re&cently File";
+            toolStripStatusLabel_Rec.AutoToolTip = true;
+            toolStripStatusLabel_Rec.Enabled = false;
+            toolStripStatusLabel_Rec.Name = "toolStripStatusLabel_Rec";
+            toolStripStatusLabel_Rec.Size = new Size(90, 17);
+            toolStripStatusLabel_Rec.Text = "Status Modified";
             // 
             // Main_Form
             // 
@@ -412,6 +430,8 @@
             menuStrip_en.PerformLayout();
             toolStrip1.ResumeLayout(false);
             toolStrip1.PerformLayout();
+            statusStrip1.ResumeLayout(false);
+            statusStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)trackBar_Zoom).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -457,5 +477,7 @@
         private ToolStripButton toolStripButton_Redo;
         private ToolStripSeparator toolStripSeparator9;
         private ToolStripMenuItem recentlyFileToolStripMenuItem;
+        private ToolStripStatusLabel toolStripStatusLabel_CursorPosition;
+        private ToolStripStatusLabel toolStripStatusLabel_Rec;
     }
 }
