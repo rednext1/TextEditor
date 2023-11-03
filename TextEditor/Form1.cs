@@ -21,6 +21,9 @@ namespace TextEditor
             //Displays the position of the caret in the text and status document -> Yan Start
             Init_Mod();
             //Displays the position of the caret in the text and status document -> Yan End
+
+            //FONTS
+            Init_Font();
         }
 
         private void Main_Form_FormClosing(object sender, FormClosingEventArgs e)
@@ -156,64 +159,139 @@ namespace TextEditor
 
         }
 
+        //FONTS
+        private void Init_Font()
+        {
+            //Stuffing the list with fonts
+            foreach (int size in new int[] { 8, 9, 10, 11, 12, 14, 16, 18, 20, 22, 24, 26, 28, 36, 48, 72 })
+            {
+                this.toolStripComboBox_Size.Items.Add(size.ToString());
+            }
+            //Stuffing the list with font sizes
+            foreach (FontFamily fontFamily in FontFamily.Families)
+            {
+                this.toolStripComboBox_Font.Items.Add(fontFamily.Name);
+
+            }
+            this.Upd_Style_Text();
+            this.richTextBox_Main.SelectionChanged += delegate { this.Upd_Style_Text(); };
+        }
+
+        private void Upd_Style_Text()
+        {
+            Font font = this.richTextBox_Main.SelectionFont;
+            bool none = font == null;
+            toolStripComboBox_Font.Text = none ? "" : font.FontFamily.Name;
+            toolStripComboBox_Size.Text = none ? "" : font.Size.ToString();
+        }
         private void toolStripComboBox_Font_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Font font = this.richTextBox_Main.SelectionFont;
 
+            if (font == null)
+            {
+                MessageBox.Show("Warning! Text Editor cannot change the font style, text with different fonts is selected!",
+                   "Text Editor - Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            string fontFamilyName = this.toolStripComboBox_Font.Text;
+
+            this.richTextBox_Main.SelectionFont = new Font(fontFamilyName, font.Size, font.Style, font.Unit);
         }
 
         private void toolStripComboBox_Size_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Font font = this.richTextBox_Main.SelectionFont;
 
+            if (font == null)
+            {
+                MessageBox.Show("Warning! Text Editor cannot change the font size, text with different fonts is selected!",
+                    "Text Editor - Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            this.richTextBox_Main.SelectionFont = new Font(font.FontFamily, float.Parse(this.toolStripComboBox_Size.Text), font.Style, GraphicsUnit.Point);
+        }
+
+        void ToggleSelectionFontStyle(FontStyle fontStyle)
+        {
+            if (this.richTextBox_Main.SelectionFont == null)
+            {
+                MessageBox.Show("The selected text has different fonts!");
+            }
+            else
+            {
+                this.richTextBox_Main.SelectionFont = new Font(this.richTextBox_Main.SelectionFont,
+                    this.richTextBox_Main.SelectionFont.Style ^ fontStyle);
+            }
         }
 
         private void toolStripButt_Bold_Click(object sender, EventArgs e)
         {
+            ToggleSelectionFontStyle(FontStyle.Bold);
+        }
 
+        private void toolStripButt_Italic_Click(object sender, EventArgs e)
+        {
+            ToggleSelectionFontStyle(FontStyle.Italic);
         }
 
         private void StripButt_Underline_Click(object sender, EventArgs e)
         {
-
+            ToggleSelectionFontStyle(FontStyle.Underline);
         }
 
         private void toolStripButt_Strike_Click(object sender, EventArgs e)
         {
-
+            ToggleSelectionFontStyle(FontStyle.Strikeout);
         }
 
         private void toolStripButt_FrontColor_Click(object sender, EventArgs e)
         {
-
+            ColorDialog dialog_color = new ColorDialog();
+            dialog_color.Color = richTextBox_Main.SelectionColor;
+            if (dialog_color.ShowDialog() == System.Windows.Forms.DialogResult.OK &&
+               dialog_color.Color != richTextBox_Main.SelectionColor)
+            {
+                richTextBox_Main.SelectionColor = dialog_color.Color;
+            }
         }
 
         private void toolStripButt_BackFrontColor_Click(object sender, EventArgs e)
         {
-
+            ColorDialog dialog_color = new ColorDialog();
+            dialog_color.Color = richTextBox_Main.SelectionBackColor;
+            if (dialog_color.ShowDialog() == System.Windows.Forms.DialogResult.OK &&
+               dialog_color.Color != richTextBox_Main.SelectionBackColor)
+            {
+                richTextBox_Main.SelectionBackColor = dialog_color.Color;
+            }
         }
 
         private void copyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            this.richTextBox_Main.Copy();
         }
 
         private void cutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            this.richTextBox_Main.Cut();
         }
 
         private void pasteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            this.richTextBox_Main.Paste();
         }
 
         private void pasteAsTextToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            this.richTextBox_Main.SelectedText = Clipboard.GetText();
         }
 
         private void toolStripButton_clear_all_Click(object sender, EventArgs e)
         {
-
+            richTextBox_Main.Clear();
         }
 
         private void toolStripButton_Undo_Click(object sender, EventArgs e)
@@ -323,9 +401,11 @@ namespace TextEditor
 
         private void Upd_Mod()
         {
-             this.toolStripStatusLabel_Rec.Enabled = this.richTextBox_Main.Modified;
-             this.toolStripStatusLabel_Rec.Text = (this.richTextBox_Main.Modified) ? "Document CHANGED" : "Document not change";
+            this.toolStripStatusLabel_Rec.Enabled = this.richTextBox_Main.Modified;
+            this.toolStripStatusLabel_Rec.Text = (this.richTextBox_Main.Modified) ? "Document CHANGED" : "Document not change";
         }
+
+        
         //Displays the position of the caret in the text and status document  -> Yan end
 
     }
