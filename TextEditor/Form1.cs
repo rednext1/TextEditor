@@ -2,10 +2,19 @@ namespace TextEditor
 {
     public partial class Main_Form : Form
     {
+
+        //Last File Recently File -> Yan Start
+        const int MEMORY_FILE_SAVE = 10; // Number of last files memorised
+        Queue<string> MeM_LisT = new Queue<string>();
+        //Last File Recently File -> Yan End
+
         public Main_Form()
         {
             InitializeComponent();
-            //1111
+
+            //Last File Recently File -> Yan Start
+            Init_List();
+            //Last File Recently File -> Yan End
         }
 
         private void Main_Form_FormClosing(object sender, FormClosingEventArgs e)
@@ -39,6 +48,7 @@ namespace TextEditor
                 }
             }
         }
+        //Organising searches in a document->yan End
 
         string doc_name = @"";
 
@@ -50,6 +60,7 @@ namespace TextEditor
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
                     OpenDocument(dlg.FileName);
+                    SaveRecentFile(dlg.FileName); //insert to list so that opened file will shown on the list -> Yan
                 }
             }
         }
@@ -103,7 +114,7 @@ namespace TextEditor
         public bool SaveDocumentAs()
         {
             return false;
-           
+
         }
 
         private bool PromtToSaveDocument()
@@ -121,7 +132,7 @@ namespace TextEditor
 
         private void toolStripButton_New_Doc_Click(object sender, EventArgs e)
         {
-           
+
         }
 
         private void toolStripButton_Open_Click(object sender, EventArgs e)
@@ -207,6 +218,77 @@ namespace TextEditor
         private void toolStripButton_Redo_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void SaveRecentFile(string path)
+        {
+
+            recentlyFileToolStripMenuItem.DropDownItems.Clear();
+            LoadRecentList();
+            if (!(MeM_LisT.Contains(path)))
+                MeM_LisT.Enqueue(path);
+            while (MeM_LisT.Count > MEMORY_FILE_SAVE)
+            {
+                MeM_LisT.Dequeue();
+            }
+            foreach (string item in MeM_LisT)
+            {
+
+                ToolStripMenuItem fileRecent = new ToolStripMenuItem(item, null, RecentFile_click);
+                recentlyFileToolStripMenuItem.DropDownItems.Add(fileRecent);
+            }
+
+            StreamWriter stringToWrite =
+            new StreamWriter(Environment.CurrentDirectory + "\\LastFile.txt");
+            foreach (string item in MeM_LisT)
+            {
+                stringToWrite.WriteLine(item);
+            }
+            stringToWrite.Flush();
+            stringToWrite.Close();
+        }
+
+        private void Init_List()
+        {
+            LoadRecentList();
+
+            while (MeM_LisT.Count > MEMORY_FILE_SAVE)
+            {
+                MeM_LisT.Dequeue();
+            }
+            foreach (string item in MeM_LisT)
+            {
+                ToolStripMenuItem fileRecent = new ToolStripMenuItem(item, null, RecentFile_click);
+                recentlyFileToolStripMenuItem.DropDownItems.Add(fileRecent);
+            }
+            StreamWriter stringToWrite = new StreamWriter(Environment.CurrentDirectory + "\\LastFile.txt");
+            foreach (string item in MeM_LisT)
+            {
+                stringToWrite.WriteLine(item);
+            }
+            stringToWrite.Flush();
+            stringToWrite.Close();
+        }
+
+        private void LoadRecentList()
+        {
+            MeM_LisT.Clear();
+            try
+            {
+                StreamReader listToRead = new StreamReader(System.Environment.CurrentDirectory + "\\LastFile.txt");
+                string line;
+                while ((line = listToRead.ReadLine()) != null)
+                    MeM_LisT.Enqueue(line);
+                listToRead.Close();
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+        private void RecentFile_click(object sender, EventArgs e)
+        {
+                OpenDocument(sender.ToString());
         }
     }
 }
