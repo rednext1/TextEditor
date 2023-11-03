@@ -50,6 +50,9 @@
             toolStripButt_FrontColor = new ToolStripButton();
             toolStripButt_BackFrontColor = new ToolStripButton();
             toolStripSeparator6 = new ToolStripSeparator();
+            toolStripButton_Undo = new ToolStripButton();
+            toolStripButton_Redo = new ToolStripButton();
+            toolStripSeparator9 = new ToolStripSeparator();
             toolStripButton_Copy = new ToolStripButton();
             toolStripButton_Cut = new ToolStripButton();
             toolStripSeparator7 = new ToolStripSeparator();
@@ -64,9 +67,8 @@
             contextMenuStrip_richTXTbox = new ContextMenuStrip(components);
             statusStrip1 = new StatusStrip();
             trackBar_Zoom = new TrackBar();
-            toolStripButton_Undo = new ToolStripButton();
-            toolStripButton_Redo = new ToolStripButton();
-            toolStripSeparator9 = new ToolStripSeparator();
+            recentlyFileToolStripMenuItem = new ToolStripMenuItem();
+            menuStrip_en.SuspendLayout();
             toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)trackBar_Zoom).BeginInit();
             SuspendLayout();
@@ -76,6 +78,7 @@
             menuStrip_en.AutoSize = false;
             menuStrip_en.BackColor = SystemColors.ControlLight;
             menuStrip_en.GripStyle = ToolStripGripStyle.Visible;
+            menuStrip_en.Items.AddRange(new ToolStripItem[] { recentlyFileToolStripMenuItem });
             menuStrip_en.Location = new Point(0, 0);
             menuStrip_en.Name = "menuStrip_en";
             menuStrip_en.Size = new Size(929, 24);
@@ -240,6 +243,31 @@
             toolStripSeparator6.Name = "toolStripSeparator6";
             toolStripSeparator6.Size = new Size(6, 40);
             // 
+            // toolStripButton_Undo
+            // 
+            toolStripButton_Undo.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            toolStripButton_Undo.Image = Properties.Resources.cancel;
+            toolStripButton_Undo.ImageTransparentColor = Color.Magenta;
+            toolStripButton_Undo.Name = "toolStripButton_Undo";
+            toolStripButton_Undo.Size = new Size(28, 37);
+            toolStripButton_Undo.Text = "Undo";
+            toolStripButton_Undo.Click += toolStripButton_Undo_Click;
+            // 
+            // toolStripButton_Redo
+            // 
+            toolStripButton_Redo.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            toolStripButton_Redo.Image = Properties.Resources.back;
+            toolStripButton_Redo.ImageTransparentColor = Color.Magenta;
+            toolStripButton_Redo.Name = "toolStripButton_Redo";
+            toolStripButton_Redo.Size = new Size(28, 37);
+            toolStripButton_Redo.Text = "Redo";
+            toolStripButton_Redo.Click += toolStripButton_Redo_Click;
+            // 
+            // toolStripSeparator9
+            // 
+            toolStripSeparator9.Name = "toolStripSeparator9";
+            toolStripSeparator9.Size = new Size(6, 40);
+            // 
             // toolStripButton_Copy
             // 
             toolStripButton_Copy.DisplayStyle = ToolStripItemDisplayStyle.Image;
@@ -312,7 +340,7 @@
             toolStripButton_search.Image = Properties.Resources.search;
             toolStripButton_search.ImageTransparentColor = Color.Magenta;
             toolStripButton_search.Name = "toolStripButton_search";
-            toolStripButton_search.Size = new Size(28, 28);
+            toolStripButton_search.Size = new Size(28, 37);
             toolStripButton_search.Text = "Search";
             toolStripButton_search.Click += toolStripButton_search_Click;
             // 
@@ -359,30 +387,11 @@
             trackBar_Zoom.TabIndex = 4;
             trackBar_Zoom.TickStyle = TickStyle.TopLeft;
             // 
-            // toolStripButton_Undo
+            // recentlyFileToolStripMenuItem
             // 
-            toolStripButton_Undo.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            toolStripButton_Undo.Image = Properties.Resources.cancel;
-            toolStripButton_Undo.ImageTransparentColor = Color.Magenta;
-            toolStripButton_Undo.Name = "toolStripButton_Undo";
-            toolStripButton_Undo.Size = new Size(28, 37);
-            toolStripButton_Undo.Text = "Undo";
-            toolStripButton_Undo.Click += toolStripButton_Undo_Click;
-            // 
-            // toolStripButton_Redo
-            // 
-            toolStripButton_Redo.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            toolStripButton_Redo.Image = Properties.Resources.back;
-            toolStripButton_Redo.ImageTransparentColor = Color.Magenta;
-            toolStripButton_Redo.Name = "toolStripButton_Redo";
-            toolStripButton_Redo.Size = new Size(28, 37);
-            toolStripButton_Redo.Text = "Redo";
-            toolStripButton_Redo.Click += toolStripButton_Redo_Click;
-            // 
-            // toolStripSeparator9
-            // 
-            toolStripSeparator9.Name = "toolStripSeparator9";
-            toolStripSeparator9.Size = new Size(6, 40);
+            recentlyFileToolStripMenuItem.Name = "recentlyFileToolStripMenuItem";
+            recentlyFileToolStripMenuItem.Size = new Size(85, 20);
+            recentlyFileToolStripMenuItem.Text = "Re&cently File";
             // 
             // Main_Form
             // 
@@ -399,6 +408,8 @@
             Name = "Main_Form";
             Text = "Text Editor";
             FormClosing += Main_Form_FormClosing;
+            menuStrip_en.ResumeLayout(false);
+            menuStrip_en.PerformLayout();
             toolStrip1.ResumeLayout(false);
             toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)trackBar_Zoom).EndInit();
@@ -445,5 +456,6 @@
         private ToolStripButton toolStripButton_Undo;
         private ToolStripButton toolStripButton_Redo;
         private ToolStripSeparator toolStripSeparator9;
+        private ToolStripMenuItem recentlyFileToolStripMenuItem;
     }
 }
