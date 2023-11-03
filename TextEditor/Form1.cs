@@ -1,3 +1,5 @@
+using System.Runtime.InteropServices;
+
 namespace TextEditor
 {
     public partial class Main_Form : Form
@@ -15,6 +17,10 @@ namespace TextEditor
             //Last File Recently File -> Yan Start
             Init_List();
             //Last File Recently File -> Yan End
+
+            //Displays the position of the caret in the text and status document -> Yan Start
+            Init_Mod();
+            //Displays the position of the caret in the text and status document -> Yan End
         }
 
         private void Main_Form_FormClosing(object sender, FormClosingEventArgs e)
@@ -120,7 +126,7 @@ namespace TextEditor
         private bool PromtToSaveDocument()
         {
             if (!richTextBox_Main.Modified) return true;
-            DialogResult dialog = MessageBox.Show("Do you want to save '" + doc_name + "'?", "TxT - Quedtion", MessageBoxButtons.YesNoCancel);
+            DialogResult dialog = MessageBox.Show("Do you want to save '" + doc_name + "'?", "TextEditor - Question", MessageBoxButtons.YesNoCancel);
             switch (dialog)
             {
                 case DialogResult.Yes: return SaveDocument();
@@ -220,6 +226,7 @@ namespace TextEditor
 
         }
 
+        //Recent file -> Yan start
         private void SaveRecentFile(string path)
         {
 
@@ -288,7 +295,38 @@ namespace TextEditor
         }
         private void RecentFile_click(object sender, EventArgs e)
         {
-                OpenDocument(sender.ToString());
+            OpenDocument(sender.ToString());
         }
+        //Recent file -> Yan end
+
+        //Displays the position of the caret in the text and status document -> Yan Start
+        private static int EM_LINEINDEX = 187;
+        [DllImport("user32.dll")]
+        extern static int SendMessage(IntPtr hwnd, int message, int wparam, int lparam);
+        private void UpdateCaretPos()
+        {
+            int line, col, index;
+            index = richTextBox_Main.SelectionStart;
+            line = richTextBox_Main.GetLineFromCharIndex(index);
+            col = index - SendMessage(richTextBox_Main.Handle, EM_LINEINDEX, -1, 0);
+            toolStripStatusLabel_CursorPosition.Text = "Row: " + (++line).ToString() + ", Col: " + (++col).ToString();
+        }
+
+        private void Init_Mod()
+        {
+            this.Upd_Mod();
+            this.UpdateCaretPos();
+            this.richTextBox_Main.ModifiedChanged += delegate { this.Upd_Mod(); this.UpdateCaretPos(); };
+            this.richTextBox_Main.KeyDown += delegate { this.UpdateCaretPos(); };
+            this.richTextBox_Main.KeyUp += delegate { this.UpdateCaretPos(); };
+        }
+
+        private void Upd_Mod()
+        {
+             this.toolStripStatusLabel_Rec.Enabled = this.richTextBox_Main.Modified;
+             this.toolStripStatusLabel_Rec.Text = (this.richTextBox_Main.Modified) ? "Document CHANGED" : "Document not change";
+        }
+        //Displays the position of the caret in the text and status document  -> Yan end
+
     }
 }
