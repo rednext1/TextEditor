@@ -68,8 +68,8 @@
             contextMenuStrip_richTXTbox = new ContextMenuStrip(components);
             statusStrip1 = new StatusStrip();
             toolStripStatusLabel_CursorPosition = new ToolStripStatusLabel();
-            trackBar_Zoom = new TrackBar();
             toolStripStatusLabel_Rec = new ToolStripStatusLabel();
+            trackBar_Zoom = new TrackBar();
             menuStrip_en.SuspendLayout();
             toolStrip1.SuspendLayout();
             statusStrip1.SuspendLayout();
@@ -201,6 +201,7 @@
             toolStripButt_Italic.Name = "toolStripButt_Italic";
             toolStripButt_Italic.Size = new Size(28, 37);
             toolStripButt_Italic.Text = "Italic Font";
+            toolStripButt_Italic.Click += toolStripButt_Italic_Click;
             // 
             // StripButt_Underline
             // 
@@ -349,7 +350,7 @@
             toolStripButton_search.Image = Properties.Resources.search;
             toolStripButton_search.ImageTransparentColor = Color.Magenta;
             toolStripButton_search.Name = "toolStripButton_search";
-            toolStripButton_search.Size = new Size(28, 37);
+            toolStripButton_search.Size = new Size(28, 28);
             toolStripButton_search.Text = "Search";
             toolStripButton_search.Click += toolStripButton_search_Click;
             // 
@@ -392,6 +393,14 @@
             toolStripStatusLabel_CursorPosition.Size = new Size(88, 17);
             toolStripStatusLabel_CursorPosition.Text = "Cursor Position";
             // 
+            // toolStripStatusLabel_Rec
+            // 
+            toolStripStatusLabel_Rec.AutoToolTip = true;
+            toolStripStatusLabel_Rec.Enabled = false;
+            toolStripStatusLabel_Rec.Name = "toolStripStatusLabel_Rec";
+            toolStripStatusLabel_Rec.Size = new Size(90, 17);
+            toolStripStatusLabel_Rec.Text = "Status Modified";
+            // 
             // trackBar_Zoom
             // 
             trackBar_Zoom.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
@@ -402,14 +411,6 @@
             trackBar_Zoom.Size = new Size(45, 512);
             trackBar_Zoom.TabIndex = 4;
             trackBar_Zoom.TickStyle = TickStyle.TopLeft;
-            // 
-            // toolStripStatusLabel_Rec
-            // 
-            toolStripStatusLabel_Rec.AutoToolTip = true;
-            toolStripStatusLabel_Rec.Enabled = false;
-            toolStripStatusLabel_Rec.Name = "toolStripStatusLabel_Rec";
-            toolStripStatusLabel_Rec.Size = new Size(90, 17);
-            toolStripStatusLabel_Rec.Text = "Status Modified";
             // 
             // Main_Form
             // 
