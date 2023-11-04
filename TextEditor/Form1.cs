@@ -4,18 +4,24 @@ namespace TextEditor
 {
     public partial class Main_Form : Form
     {
+        //Earning methods with a file - Art Start
+        string doc_name = @"";
+        //Earning methods with a file - Art End
 
         //Last File Recently File -> Yan Start
         const int MEMORY_FILE_SAVE = 10; // Number of last files memorised
         Queue<string> MeM_LisT = new Queue<string>();
         //Last File Recently File -> Yan End
 
-        //ÑÌÅÍÀ ÐÀÇÌÅÐÀ ÈÍÒÅÐÔÅÉÑÀ && TrackBar_Zoom
+        //Ã‘ÃŒÃ…ÃÃ€ ÃÃ€Ã‡ÃŒÃ…ÃÃ€ ÃˆÃÃ’Ã…ÃÃ”Ã…Ã‰Ã‘Ã€ && TrackBar_Zoom
         float start_zoom_scale;
 
         public Main_Form()
         {
             InitializeComponent();
+            //Development of Undo-Redo - Art Start
+            Init_Undo_Redo();
+            //Development of Undo-Redo - Art Start
 
             //Last File Recently File -> Yan Start
             Init_List();
@@ -28,18 +34,29 @@ namespace TextEditor
             //FONTS
             Init_Font();
 
+
             //TrackBar_Zoom
             trackBar_Zoom.Value = 3; // 3 - 100%
             trackBar_Zoom_Scroll(this, null);
 
             //DragDrop
             this.richTextBox_Main.DragDrop += new DragEventHandler(this.textBox_Main_DragDrop);
+
+            //Tabulation
+            richTextBox_Main.Multiline = true;
+            richTextBox_Main.AcceptsTab = true;
+
         }
 
-        private void Main_Form_FormClosing(object sender, FormClosingEventArgs e)
+        //Tabulation - Art Start
+        private void richTextBox_Main_KeyDown(object sender, KeyEventArgs e)
         {
-
+            if (e.KeyCode == Keys.Tab)
+            {
+                e.Handled = false;
+            }
         }
+        //Tabulation - Art End
 
         //Organising searches in a document -> Yan
         int start_pos_search = 0;
@@ -69,8 +86,7 @@ namespace TextEditor
         }
         //Organising searches in a document->yan End
 
-        string doc_name = @"";
-
+        //Earning methods with a file - Art Start
         public void OpenDocument()
         {
             using (var dlg = new OpenFileDialog())
@@ -116,7 +132,7 @@ namespace TextEditor
 
         public bool SaveDocument(string _file_name)
         {
-            if (string.IsNullOrEmpty(_file_name)) //Ïðîâåðÿåì åñòü ëè èìÿ ó îòêðûòîãî ôàéëà, íåò - âûçûâàåì ñîõðàíåíèå
+            if (string.IsNullOrEmpty(_file_name)) //ÃÃ°Ã®Ã¢Ã¥Ã°Ã¿Ã¥Ã¬ Ã¥Ã±Ã²Ã¼ Ã«Ã¨ Ã¨Ã¬Ã¿ Ã³ Ã®Ã²ÃªÃ°Ã»Ã²Ã®Ã£Ã® Ã´Ã Ã©Ã«Ã , Ã­Ã¥Ã² - Ã¢Ã»Ã§Ã»Ã¢Ã Ã¥Ã¬ Ã±Ã®ÃµÃ°Ã Ã­Ã¥Ã­Ã¨Ã¥
             {
                 return SaveDocumentAs();
             }
@@ -132,6 +148,17 @@ namespace TextEditor
         }
         public bool SaveDocumentAs()
         {
+            using (SaveFileDialog dlg = new SaveFileDialog())
+            {
+                dlg.FileName = doc_name;
+                dlg.Filter = "RTF (*.rtf)|*.rtf|TXT (*.txt)|*.txt";
+                if (dlg.ShowDialog() == DialogResult.OK)
+                {
+                    doc_name = dlg.FileName;
+                    this.Text = "TextEditor -" + doc_name;
+                    return SaveDocument();
+                }
+            }
             return false;
 
         }
@@ -149,9 +176,20 @@ namespace TextEditor
             throw new ApplicationException();
         }
 
+        private void NewDocument()
+        {
+            if (!PromtToSaveDocument())
+                return;
+            richTextBox_Main.Clear();
+            doc_name = "New Document";
+            this.Text = "TextEditor -" + doc_name;
+            ControlTextBoxSelectionChanged();
+        }
+
+
         private void toolStripButton_New_Doc_Click(object sender, EventArgs e)
         {
-
+            NewDocument();
         }
 
         private void toolStripButton_Open_Click(object sender, EventArgs e)
@@ -166,9 +204,21 @@ namespace TextEditor
 
         private void toolStripButton_SaveAs_Click(object sender, EventArgs e)
         {
-
+            SaveDocumentAs();
         }
 
+        private void Main_Form_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!this.PromtToSaveDocument())
+            {
+                e.Cancel = true;
+            }
+        }
+        private void exitToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+        //Earning methods with a file - Art Start
         //FONTS
         private void Init_Font()
         {
@@ -304,16 +354,6 @@ namespace TextEditor
             richTextBox_Main.Clear();
         }
 
-        private void toolStripButton_Undo_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void toolStripButton_Redo_Click(object sender, EventArgs e)
-        {
-
-        }
-
         //Recent file -> Yan start
         private void SaveRecentFile(string path)
         {
@@ -415,6 +455,7 @@ namespace TextEditor
             this.toolStripStatusLabel_Rec.Text = (this.richTextBox_Main.Modified) ? "Document CHANGED" : "Document not change";
         }
 
+
         // TrackBar_Zoom
         private void trackBar_Zoom_Scroll(object sender, EventArgs e)
         {
@@ -476,7 +517,7 @@ namespace TextEditor
                 this.richTextBox_Main.TextChanged -= new System.EventHandler(this.richTextBox_Main_TextChanged);
                 if (this.richTextBox_Main.Focus())
                 {
-                    this.richTextBox_Main.Clear();//Óäàëÿåì OLE îáüåêò
+                    this.richTextBox_Main.Clear();//Ã“Ã¤Ã Ã«Ã¿Ã¥Ã¬ OLE Ã®Ã¡Ã¼Ã¥ÃªÃ²
                     this.richTextBox_Main.Paste();
                     this.richTextBox_Main.Select(0, 0);
                 }
@@ -487,8 +528,40 @@ namespace TextEditor
             }
         }
 
-
         //Displays the position of the caret in the text and status document  -> Yan end
+
+        //Development of Undo-Redo - Art Start
+        private void Init_Undo_Redo()
+        {
+            this.Upd_Retry_Butt();
+            this.richTextBox_Main.TextChanged += delegate { this.Upd_Retry_Butt(); };
+        }
+        void Upd_Retry_Butt()
+        {
+            this.contextMenuStrip_richTXTbox.Enabled = this.richTextBox_Main.CanUndo;
+            this.toolStripButton_Undo.Enabled = this.richTextBox_Main.CanUndo;
+            this.toolStripButton_Redo.Enabled = this.richTextBox_Main.CanRedo;
+        }
+        private void toolStripButton_Undo_Click(object sender, EventArgs e)
+        {
+            this.richTextBox_Main.Undo();
+            this.Upd_Retry_Butt();
+        }
+
+        private void toolStripButton_Redo_Click(object sender, EventArgs e)
+        {
+            this.richTextBox_Main.Redo();
+            this.Upd_Retry_Butt();
+        }
+
+        //Development of Undo-Redo - Art End
+        private void toolStripMenuItem_SellAll_Click(object sender, EventArgs e)
+        {
+            if (this.richTextBox_Main.Focus())
+            {
+                richTextBox_Main.SelectAll();
+            }
+        }
 
     }
 }
