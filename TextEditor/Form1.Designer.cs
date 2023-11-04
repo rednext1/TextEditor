@@ -350,7 +350,7 @@
             toolStripButton_search.Image = Properties.Resources.search;
             toolStripButton_search.ImageTransparentColor = Color.Magenta;
             toolStripButton_search.Name = "toolStripButton_search";
-            toolStripButton_search.Size = new Size(28, 28);
+            toolStripButton_search.Size = new Size(28, 37);
             toolStripButton_search.Text = "Search";
             toolStripButton_search.Click += toolStripButton_search_Click;
             // 
@@ -369,6 +369,7 @@
             richTextBox_Main.Size = new Size(878, 518);
             richTextBox_Main.TabIndex = 0;
             richTextBox_Main.Text = "";
+            richTextBox_Main.KeyDown += richTextBox_Main_KeyDown;
             // 
             // contextMenuStrip_richTXTbox
             // 
