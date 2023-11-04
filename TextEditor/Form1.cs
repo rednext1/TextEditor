@@ -16,9 +16,6 @@ namespace TextEditor
         public Main_Form()
         {
             InitializeComponent();
-            //Development of Undo-Redo - Art Start
-            Init_Undo_Redo();
-            //Development of Undo-Redo - Art Start
 
             //Last File Recently File -> Yan Start
             Init_List();
@@ -326,6 +323,16 @@ namespace TextEditor
             richTextBox_Main.Clear();
         }
 
+        private void toolStripButton_Undo_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripButton_Redo_Click(object sender, EventArgs e)
+        {
+
+        }
+
         //Recent file -> Yan start
         private void SaveRecentFile(string path)
         {
@@ -427,33 +434,8 @@ namespace TextEditor
             this.toolStripStatusLabel_Rec.Text = (this.richTextBox_Main.Modified) ? "Document CHANGED" : "Document not change";
         }
 
-
+        
         //Displays the position of the caret in the text and status document  -> Yan end
 
-        //Development of Undo-Redo - Art Start
-        private void Init_Undo_Redo()
-        {
-            this.Upd_Retry_Butt();
-            this.richTextBox_Main.TextChanged += delegate { this.Upd_Retry_Butt(); };
-        }
-
-        void Upd_Retry_Butt()
-        {
-            this.contextMenuStrip_richTXTbox.Enabled = this.richTextBox_Main.CanUndo;
-            this.toolStripButton_Undo.Enabled = this.richTextBox_Main.CanUndo;
-            this.toolStripButton_Redo.Enabled = this.richTextBox_Main.CanRedo;
-        }
-        private void toolStripButton_Undo_Click(object sender, EventArgs e)
-        {
-            this.richTextBox_Main.Undo();
-            this.Upd_Retry_Butt();
-        }
-
-        private void toolStripButton_Redo_Click(object sender, EventArgs e)
-        {
-            this.richTextBox_Main.Redo();
-            this.Upd_Retry_Butt();
-        }
-        //Development of Undo-Redo - Art End
     }
 }
