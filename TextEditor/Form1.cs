@@ -202,6 +202,10 @@ namespace TextEditor
                 e.Cancel = true;
             }
         }
+        private void exitToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
         //Earning methods with a file - Art Start
         //FONTS
         private void Init_Font()
@@ -465,6 +469,15 @@ namespace TextEditor
             this.richTextBox_Main.Redo();
             this.Upd_Retry_Butt();
         }
+
         //Development of Undo-Redo - Art End
+        private void toolStripMenuItem_SellAll_Click(object sender, EventArgs e)
+        {
+            if (this.richTextBox_Main.Focus())
+            {
+                richTextBox_Main.SelectAll();
+            }
+        }
+
     }
 }
