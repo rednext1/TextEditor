@@ -70,7 +70,6 @@
             toolStripStatusLabel_CursorPosition = new ToolStripStatusLabel();
             toolStripStatusLabel_Rec = new ToolStripStatusLabel();
             trackBar_Zoom = new TrackBar();
-            label_curr_zoom = new Label();
             menuStrip_en.SuspendLayout();
             toolStrip1.SuspendLayout();
             statusStrip1.SuspendLayout();
@@ -85,7 +84,7 @@
             menuStrip_en.Items.AddRange(new ToolStripItem[] { recentlyFileToolStripMenuItem });
             menuStrip_en.Location = new Point(0, 0);
             menuStrip_en.Name = "menuStrip_en";
-            menuStrip_en.Size = new Size(937, 24);
+            menuStrip_en.Size = new Size(929, 24);
             menuStrip_en.TabIndex = 0;
             menuStrip_en.Text = "menuStrip1";
             // 
@@ -103,7 +102,7 @@
             toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripButton_New_Doc, toolStripButton_Open, toolStripSeparator1, toolStripButton_Save, toolStripButton_SaveAs, toolStripSeparator2, toolStripComboBox_Font, toolStripSeparator3, toolStripComboBox_Size, toolStripSeparator4, toolStripButt_Bold, toolStripButt_Italic, StripButt_Underline, toolStripButt_Strike, toolStripSeparator5, toolStripButt_FrontColor, toolStripButt_BackFrontColor, toolStripSeparator6, toolStripButton_Undo, toolStripButton_Redo, toolStripSeparator9, toolStripButton_Copy, toolStripButton_Cut, toolStripSeparator7, toolStripButton_Paste, toolStripButton_PasteAsText, toolStripSeparator10, toolStripButton_clear_all, toolStripTextBox_search, toolStripButton_search, toolStripSeparator8 });
             toolStrip1.Location = new Point(0, 24);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(937, 40);
+            toolStrip1.Size = new Size(929, 40);
             toolStrip1.Stretch = true;
             toolStrip1.TabIndex = 1;
             toolStrip1.Text = "toolStrip1";
@@ -351,7 +350,7 @@
             toolStripButton_search.Image = Properties.Resources.search;
             toolStripButton_search.ImageTransparentColor = Color.Magenta;
             toolStripButton_search.Name = "toolStripButton_search";
-            toolStripButton_search.Size = new Size(28, 37);
+            toolStripButton_search.Size = new Size(28, 28);
             toolStripButton_search.Text = "Search";
             toolStripButton_search.Click += toolStripButton_search_Click;
             // 
@@ -367,7 +366,7 @@
             richTextBox_Main.Location = new Point(0, 67);
             richTextBox_Main.Name = "richTextBox_Main";
             richTextBox_Main.ScrollBars = RichTextBoxScrollBars.ForcedBoth;
-            richTextBox_Main.Size = new Size(886, 539);
+            richTextBox_Main.Size = new Size(878, 518);
             richTextBox_Main.TabIndex = 0;
             richTextBox_Main.Text = "";
             // 
@@ -382,9 +381,9 @@
             statusStrip1.AutoSize = false;
             statusStrip1.BackColor = SystemColors.ControlLight;
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel_CursorPosition, toolStripStatusLabel_Rec });
-            statusStrip1.Location = new Point(0, 603);
+            statusStrip1.Location = new Point(0, 582);
             statusStrip1.Name = "statusStrip1";
-            statusStrip1.Size = new Size(937, 22);
+            statusStrip1.Size = new Size(929, 22);
             statusStrip1.TabIndex = 3;
             statusStrip1.Text = "statusStrip1";
             // 
@@ -406,29 +405,18 @@
             // 
             trackBar_Zoom.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             trackBar_Zoom.LargeChange = 1;
-            trackBar_Zoom.Location = new Point(892, 67);
+            trackBar_Zoom.Location = new Point(884, 67);
             trackBar_Zoom.Name = "trackBar_Zoom";
             trackBar_Zoom.Orientation = Orientation.Vertical;
-            trackBar_Zoom.Size = new Size(45, 533);
+            trackBar_Zoom.Size = new Size(45, 512);
             trackBar_Zoom.TabIndex = 4;
             trackBar_Zoom.TickStyle = TickStyle.TopLeft;
-            // 
-            // label_curr_zoom
-            // 
-            label_curr_zoom.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            label_curr_zoom.AutoSize = true;
-            label_curr_zoom.Location = new Point(826, 607);
-            label_curr_zoom.Name = "label_curr_zoom";
-            label_curr_zoom.Size = new Size(69, 15);
-            label_curr_zoom.TabIndex = 5;
-            label_curr_zoom.Text = "Zoom Scale";
             // 
             // Main_Form
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(937, 625);
-            Controls.Add(label_curr_zoom);
+            ClientSize = new Size(929, 604);
             Controls.Add(trackBar_Zoom);
             Controls.Add(statusStrip1);
             Controls.Add(richTextBox_Main);
@@ -492,6 +480,5 @@
         private ToolStripMenuItem recentlyFileToolStripMenuItem;
         private ToolStripStatusLabel toolStripStatusLabel_CursorPosition;
         private ToolStripStatusLabel toolStripStatusLabel_Rec;
-        private Label label_curr_zoom;
     }
 }

@@ -10,9 +10,6 @@ namespace TextEditor
         Queue<string> MeM_LisT = new Queue<string>();
         //Last File Recently File -> Yan End
 
-        //ÑÌÅÍÀ ÐÀÇÌÅÐÀ ÈÍÒÅÐÔÅÉÑÀ && TrackBar_Zoom
-        float start_zoom_scale;
-
         public Main_Form()
         {
             InitializeComponent();
@@ -27,13 +24,6 @@ namespace TextEditor
 
             //FONTS
             Init_Font();
-
-            //TrackBar_Zoom
-            trackBar_Zoom.Value = 3; // 3 - 100%
-            trackBar_Zoom_Scroll(this, null);
-
-            //DragDrop
-            this.richTextBox_Main.DragDrop += new DragEventHandler(this.textBox_Main_DragDrop);
         }
 
         private void Main_Form_FormClosing(object sender, FormClosingEventArgs e)
@@ -415,79 +405,7 @@ namespace TextEditor
             this.toolStripStatusLabel_Rec.Text = (this.richTextBox_Main.Modified) ? "Document CHANGED" : "Document not change";
         }
 
-        // TrackBar_Zoom
-        private void trackBar_Zoom_Scroll(object sender, EventArgs e)
-        {
-
-
-            switch (trackBar_Zoom.Value)
-            {
-                case 10: { richTextBox_Main.ZoomFactor = start_zoom_scale * 4f; label_curr_zoom.Text = "Zoom Scale: " + "400" + "%"; } break;
-                case 9: { richTextBox_Main.ZoomFactor = start_zoom_scale * 3.5f; label_curr_zoom.Text = "Zoom Scale: " + "350" + "%"; } break;
-                case 8: { richTextBox_Main.ZoomFactor = start_zoom_scale * 3f; label_curr_zoom.Text = "Zoom Scale: " + "300" + "%"; } break;
-                case 7: { richTextBox_Main.ZoomFactor = start_zoom_scale * 2.5f; label_curr_zoom.Text = "Zoom Scale: " + "250" + "%"; } break;
-                case 6: { richTextBox_Main.ZoomFactor = start_zoom_scale * 2f; label_curr_zoom.Text = "Zoom Scale: " + "200" + "%"; } break;
-                case 5: { richTextBox_Main.ZoomFactor = start_zoom_scale * 1.5f; label_curr_zoom.Text = "Zoom Scale: " + "150" + "%"; } break;
-                case 4: { richTextBox_Main.ZoomFactor = start_zoom_scale * 1.25f; label_curr_zoom.Text = "Zoom Scale: " + "125" + "%"; } break;
-                case 3: { richTextBox_Main.ZoomFactor = 1f; label_curr_zoom.Text = "Zoom Scale: " + "100" + "%"; } break;
-                case 2: { richTextBox_Main.ZoomFactor = start_zoom_scale * 0.6f; label_curr_zoom.Text = "Zoom Scale: " + "60" + "%"; } break;
-                case 1: { richTextBox_Main.ZoomFactor = start_zoom_scale * 0.3f; label_curr_zoom.Text = "Zoom Scale: " + "30" + "%"; } break;
-                case 0: { richTextBox_Main.ZoomFactor = start_zoom_scale * 0.15f; label_curr_zoom.Text = "Zoom Scale: " + "15" + "%"; } break;
-
-                default:
-                    break;
-            }
-
-        }
-
-        private void textBox_Main_DragDrop(object sender, DragEventArgs e)
-        {
-            try
-            {
-                string str_for_drop;
-                Array arr = (Array)e.Data.GetData(DataFormats.FileDrop);
-                if (arr != null)
-                {
-                    str_for_drop = arr.GetValue(0).ToString();
-
-                    this.Activate();
-                    OpenDocument(str_for_drop);
-                    if (this.richTextBox_Main.Focus())
-                    {
-                        this.richTextBox_Main.SelectAll();
-                        this.richTextBox_Main.Cut();
-                    }
-
-                    this.richTextBox_Main.TextChanged += new System.EventHandler(this.richTextBox_Main_TextChanged);
-                }
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error in DragDrop function: " + ex.Message);
-            }
-
-        }
-
-        private void richTextBox_Main_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                this.richTextBox_Main.TextChanged -= new System.EventHandler(this.richTextBox_Main_TextChanged);
-                if (this.richTextBox_Main.Focus())
-                {
-                    this.richTextBox_Main.Clear();//Óäàëÿåì OLE îáüåêò
-                    this.richTextBox_Main.Paste();
-                    this.richTextBox_Main.Select(0, 0);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error read file" + ex.ToString());
-            }
-        }
-
-
+        
         //Displays the position of the caret in the text and status document  -> Yan end
 
     }
