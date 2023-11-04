@@ -4,6 +4,9 @@ namespace TextEditor
 {
     public partial class Main_Form : Form
     {
+        //Earning methods with a file - Art Start
+        string doc_name = @"";
+        //Earning methods with a file - Art End
 
         //Last File Recently File -> Yan Start
         const int MEMORY_FILE_SAVE = 10; // Number of last files memorised
@@ -26,10 +29,7 @@ namespace TextEditor
             Init_Font();
         }
 
-        private void Main_Form_FormClosing(object sender, FormClosingEventArgs e)
-        {
-
-        }
+       
 
         //Organising searches in a document -> Yan
         int start_pos_search = 0;
@@ -59,8 +59,7 @@ namespace TextEditor
         }
         //Organising searches in a document->yan End
 
-        string doc_name = @"";
-
+        //Earning methods with a file - Art Start
         public void OpenDocument()
         {
             using (var dlg = new OpenFileDialog())
@@ -122,6 +121,17 @@ namespace TextEditor
         }
         public bool SaveDocumentAs()
         {
+            using (SaveFileDialog dlg = new SaveFileDialog())
+            {
+                dlg.FileName = doc_name;
+                dlg.Filter = "RTF (*.rtf)|*.rtf|TXT (*.txt)|*.txt";
+                if (dlg.ShowDialog() == DialogResult.OK)
+                {
+                    doc_name = dlg.FileName;
+                    this.Text = "TextEditor -" + doc_name;
+                    return SaveDocument();
+                }
+            }
             return false;
 
         }
@@ -139,9 +149,20 @@ namespace TextEditor
             throw new ApplicationException();
         }
 
+        private void NewDocument()
+        {
+            if (!PromtToSaveDocument())
+                return;
+            richTextBox_Main.Clear();
+            doc_name = "New Document";
+            this.Text = "TextEditor -" + doc_name;
+            ControlTextBoxSelectionChanged();
+        }
+        
+
         private void toolStripButton_New_Doc_Click(object sender, EventArgs e)
         {
-
+            NewDocument();
         }
 
         private void toolStripButton_Open_Click(object sender, EventArgs e)
@@ -156,9 +177,17 @@ namespace TextEditor
 
         private void toolStripButton_SaveAs_Click(object sender, EventArgs e)
         {
-
+            SaveDocumentAs();
         }
 
+        private void Main_Form_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!this.PromtToSaveDocument())
+            {
+                e.Cancel = true;
+            }
+        }
+        //Earning methods with a file - Art Start
         //FONTS
         private void Init_Font()
         {
