@@ -1,4 +1,5 @@
 using System.Runtime.InteropServices;
+using System.Windows.Forms;
 
 namespace TextEditor
 {
@@ -478,6 +479,16 @@ namespace TextEditor
                 richTextBox_Main.SelectAll();
             }
         }
+
+        //Adding lists to richtextbox - Art start
+        private void toolStripButton_list_Click(object sender, EventArgs e)
+        {
+            richTextBox_Main.SelectionIndent = 50;
+            SendKeys.Send("^+{L}");
+        }
+        //Adding lists to richtextbox - Art End
+
+
 
     }
 }
