@@ -4,6 +4,9 @@ namespace TextEditor
 {
     public partial class Main_Form : Form
     {
+        //Earning methods with a file - Art Start
+        string doc_name = @"";
+        //Earning methods with a file - Art End
 
         //Last File Recently File -> Yan Start
         const int MEMORY_FILE_SAVE = 10; // Number of last files memorised
@@ -57,8 +60,6 @@ namespace TextEditor
         //Organising searches in a document->yan End
 
         //Earning methods with a file - Art Start
-        string doc_name = @"";
-
         public void OpenDocument()
         {
             using (var dlg = new OpenFileDialog())
