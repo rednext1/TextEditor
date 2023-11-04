@@ -30,9 +30,21 @@ namespace TextEditor
 
             //FONTS
             Init_Font();
+
+            //Tabulation
+            richTextBox_Main.Multiline = true;
+            richTextBox_Main.AcceptsTab = true;
         }
 
-       
+        //Tabulation - Art Start
+        private void richTextBox_Main_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Tab)
+            {
+                e.Handled = false;
+            }
+        }
+        //Tabulation - Art End
 
         //Organising searches in a document -> Yan
         int start_pos_search = 0;
@@ -161,7 +173,7 @@ namespace TextEditor
             this.Text = "TextEditor -" + doc_name;
             ControlTextBoxSelectionChanged();
         }
-        
+
 
         private void toolStripButton_New_Doc_Click(object sender, EventArgs e)
         {
@@ -445,7 +457,7 @@ namespace TextEditor
         private void toolStripButton_Undo_Click(object sender, EventArgs e)
         {
             this.richTextBox_Main.Undo();
-            this.Upd_Retry_Butt(); 
+            this.Upd_Retry_Butt();
         }
 
         private void toolStripButton_Redo_Click(object sender, EventArgs e)
