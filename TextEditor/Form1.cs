@@ -14,9 +14,10 @@ namespace TextEditor
         Queue<string> MeM_LisT = new Queue<string>();
         //Last File Recently File -> Yan End
 
-        //ÑÌÅÍÀ ÐÀÇÌÅÐÀ ÈÍÒÅÐÔÅÉÑÀ && TrackBar_Zoom
-        float start_zoom_scale;
-        int count = 0;
+        //TrackBar_Zoom ->Serg Start
+        float start_zoom_scale=1f;
+        //TrackBar_Zoom ->Serg End
+
         public Main_Form()
         {
             InitializeComponent();
@@ -34,7 +35,6 @@ namespace TextEditor
 
             //FONTS
             Init_Font();
-
 
             //TrackBar_Zoom
             trackBar_Zoom.Value = 3; // 3 - 100%
@@ -134,7 +134,7 @@ namespace TextEditor
 
         public bool SaveDocument(string _file_name)
         {
-            if (string.IsNullOrEmpty(_file_name)) //Ïðîâåðÿåì åñòü ëè èìÿ ó îòêðûòîãî ôàéëà, íåò - âûçûâàåì ñîõðàíåíèå
+            if (string.IsNullOrEmpty(_file_name)) //Check if the open file has a name, if it does not - call saving
             {
                 return SaveDocumentAs();
             }
@@ -456,13 +456,28 @@ namespace TextEditor
             this.toolStripStatusLabel_Rec.Enabled = this.richTextBox_Main.Modified;
             this.toolStripStatusLabel_Rec.Text = (this.richTextBox_Main.Modified) ? "Document CHANGED" : "Document not change";
         }
+        private void richTextBox_Main_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                this.richTextBox_Main.TextChanged -= new System.EventHandler(this.richTextBox_Main_TextChanged);
+                if (this.richTextBox_Main.Focus())
+                {
+                    this.richTextBox_Main.Clear();//Delete OLE object
+                    this.richTextBox_Main.Paste();
+                    this.richTextBox_Main.Select(0, 0);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error read file" + ex.ToString());
+            }
+        }
+        //Displays the position of the caret in the text and status document -> Yan End
 
-
-        // TrackBar_Zoom
+        //TrackBar_Zoom ->Serg Start
         private void trackBar_Zoom_Scroll(object sender, EventArgs e)
         {
-
-
             switch (trackBar_Zoom.Value)
             {
                 case 10: { richTextBox_Main.ZoomFactor = start_zoom_scale * 4f; label_curr_zoom.Text = "Zoom Scale: " + "400" + "%"; } break;
@@ -480,9 +495,10 @@ namespace TextEditor
                 default:
                     break;
             }
-
         }
+        //TrackBar_Zoom ->Serg End
 
+        //Drag and Drop ->Serg Start
         private void textBox_Main_DragDrop(object sender, DragEventArgs e)
         {
             richTextBox_Main.SelectionIndent = 0;
@@ -503,33 +519,13 @@ namespace TextEditor
                     }
                     this.richTextBox_Main.TextChanged += new System.EventHandler(this.richTextBox_Main_TextChanged);
                 }
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error in DragDrop function: " + ex.Message);
             }
-
         }
-        private void richTextBox_Main_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                this.richTextBox_Main.TextChanged -= new System.EventHandler(this.richTextBox_Main_TextChanged);
-                if (this.richTextBox_Main.Focus())
-                {
-                    this.richTextBox_Main.Clear();//Óäàëÿåì OLE îáüåêò
-                    this.richTextBox_Main.Paste();
-                    this.richTextBox_Main.Select(0, 0);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error read file" + ex.ToString());
-            }
-        }
-
-        //Displays the position of the caret in the text and status document  -> Yan end
+        //Drag and Drop ->Serg End
 
         //Development of Undo-Redo - Art Start
         private void Init_Undo_Redo()
@@ -568,7 +564,7 @@ namespace TextEditor
         private void toolStripButton_list_Click(object sender, EventArgs e)
         {
             this.richTextBox_Main.DragDrop -= new DragEventHandler(this.textBox_Main_DragDrop);
-           
+
             richTextBox_Main.SelectionIndent = 50;
             SendKeys.Send("^+{L}");
             this.richTextBox_Main.DragDrop += new DragEventHandler(this.textBox_Main_DragDrop);
