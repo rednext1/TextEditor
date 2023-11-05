@@ -223,7 +223,6 @@
             toolStrip1.Location = new Point(0, 24);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.Size = new Size(937, 40);
-            toolStrip1.Size = new Size(961, 40);
             toolStrip1.Stretch = true;
             toolStrip1.TabIndex = 1;
             toolStrip1.Text = "toolStrip1";
@@ -477,7 +476,7 @@
             // toolStripTextBox_search
             // 
             toolStripTextBox_search.Name = "toolStripTextBox_search";
-            toolStripTextBox_search.Size = new Size(100, 40);
+            toolStripTextBox_search.Size = new Size(100, 23);
             toolStripTextBox_search.ToolTipText = "Search...";
             // 
             // toolStripButton_search
@@ -486,7 +485,7 @@
             toolStripButton_search.Image = Properties.Resources.search;
             toolStripButton_search.ImageTransparentColor = Color.Magenta;
             toolStripButton_search.Name = "toolStripButton_search";
-            toolStripButton_search.Size = new Size(28, 37);
+            toolStripButton_search.Size = new Size(28, 28);
             toolStripButton_search.Text = "Search";
             toolStripButton_search.Click += toolStripButton_search_Click;
             // 
@@ -548,6 +547,8 @@
             trackBar_Zoom.Size = new Size(45, 533);
             trackBar_Zoom.TabIndex = 4;
             trackBar_Zoom.TickStyle = TickStyle.TopLeft;
+            trackBar_Zoom.Value = 3;
+            trackBar_Zoom.Scroll += trackBar_Zoom_Scroll;
             // 
             // label_curr_zoom
             // 
