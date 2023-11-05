@@ -41,6 +41,7 @@ namespace TextEditor
             trackBar_Zoom_Scroll(this, null);
 
             //DragDrop
+            richTextBox_Main.AllowDrop = true;
             this.richTextBox_Main.DragDrop += new DragEventHandler(this.textBox_Main_DragDrop);
 
             //Tabulation
@@ -484,6 +485,7 @@ namespace TextEditor
 
         private void textBox_Main_DragDrop(object sender, DragEventArgs e)
         {
+            richTextBox_Main.SelectionIndent = 0;
             try
             {
                 string str_for_drop;
@@ -566,6 +568,7 @@ namespace TextEditor
         private void toolStripButton_list_Click(object sender, EventArgs e)
         {
             this.richTextBox_Main.DragDrop -= new DragEventHandler(this.textBox_Main_DragDrop);
+           
             richTextBox_Main.SelectionIndent = 50;
             SendKeys.Send("^+{L}");
             this.richTextBox_Main.DragDrop += new DragEventHandler(this.textBox_Main_DragDrop);
