@@ -16,7 +16,7 @@ namespace TextEditor
 
         //ÑÌÅÍÀ ÐÀÇÌÅÐÀ ÈÍÒÅÐÔÅÉÑÀ && TrackBar_Zoom
         float start_zoom_scale;
-
+        int count = 0;
         public Main_Form()
         {
             InitializeComponent();
@@ -499,7 +499,6 @@ namespace TextEditor
                         this.richTextBox_Main.SelectAll();
                         this.richTextBox_Main.Cut();
                     }
-
                     this.richTextBox_Main.TextChanged += new System.EventHandler(this.richTextBox_Main_TextChanged);
                 }
 
@@ -510,7 +509,6 @@ namespace TextEditor
             }
 
         }
-
         private void richTextBox_Main_TextChanged(object sender, EventArgs e)
         {
             try
@@ -567,8 +565,10 @@ namespace TextEditor
         //Adding lists to richtextbox - Art start
         private void toolStripButton_list_Click(object sender, EventArgs e)
         {
+            this.richTextBox_Main.DragDrop -= new DragEventHandler(this.textBox_Main_DragDrop);
             richTextBox_Main.SelectionIndent = 50;
             SendKeys.Send("^+{L}");
+            this.richTextBox_Main.DragDrop += new DragEventHandler(this.textBox_Main_DragDrop);
         }
         //Adding lists to richtextbox - Art End
 
