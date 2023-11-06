@@ -1,5 +1,7 @@
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using static System.Net.Mime.MediaTypeNames;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrayNotify;
 
 namespace TextEditor
 {
@@ -17,6 +19,10 @@ namespace TextEditor
         //TrackBar_Zoom ->Serg Start
         float start_zoom_scale = 1f;
         //TrackBar_Zoom ->Serg End
+
+        // Changing the background color of text positioning - Art Start
+        Color color;
+        // Changing the background color of text positioning - Art End
 
         public Main_Form()
         {
@@ -44,10 +50,15 @@ namespace TextEditor
             richTextBox_Main.AllowDrop = true;
             this.richTextBox_Main.DragDrop += new DragEventHandler(this.textBox_Main_DragDrop);
 
-            //Tabulation
+            //Tabulation - Art Start
             richTextBox_Main.Multiline = true;
             richTextBox_Main.AcceptsTab = true;
+            //Tabulation - Art End
 
+            // Changing the background color of text positioning - Art Start
+            color = toolStripButton_textCenter.BackColor;
+            toolStripButton_textLeft.BackColor = Color.LightBlue;
+            // Changing the background color of text positioning - Art end
         }
 
         //Tabulation - Art Start
@@ -569,12 +580,40 @@ namespace TextEditor
         private void toolStripButton_list_Click(object sender, EventArgs e)
         {
             richTextBox_Main.SelectionIndent = 50;
-            this.richTextBox_Main.DragDrop -= new DragEventHandler(this.textBox_Main_DragDrop);
-            SendKeys.Send($"^+{'L'}");
-            this.richTextBox_Main.DragDrop += new DragEventHandler(this.textBox_Main_DragDrop);
+            //this.richTextBox_Main.DragDrop -= new DragEventHandler(this.textBox_Main_DragDrop);
+            SendKeys.SendWait($"^+{'L'}");
+            //this.richTextBox_Main.DragDrop += new DragEventHandler(this.textBox_Main_DragDrop);
+        }
+        //Adding lists to richtextbox - Art End
+
+        // text positioning - Art start
+        private void toolStripButton_textLeft_Click(object sender, EventArgs e)
+        {
+            richTextBox_Main.SelectionIndent = 0;
+            richTextBox_Main.SelectionAlignment = HorizontalAlignment.Left;
+            toolStripButton_textLeft.BackColor = Color.LightBlue;
+            toolStripButton_textCenter.BackColor = color;
+            toolStripButton_textRight.BackColor = color;
+
         }
 
-        //Adding lists to richtextbox - Art End
+        private void toolStripButton_textCenter_Click(object sender, EventArgs e)
+        {
+            richTextBox_Main.SelectionAlignment = HorizontalAlignment.Center;
+            toolStripButton_textLeft.BackColor = color;
+            toolStripButton_textCenter.BackColor = Color.LightBlue;
+            toolStripButton_textRight.BackColor = color;
+        }
+
+        private void toolStripButton_textRight_Click(object sender, EventArgs e)
+        {
+            richTextBox_Main.SelectionAlignment = HorizontalAlignment.Right;
+            toolStripButton_textLeft.BackColor = color;
+            toolStripButton_textCenter.BackColor = color;
+            toolStripButton_textRight.BackColor = Color.LightBlue;
+        }
+        // text positioning - Art end
+        
 
 
 
