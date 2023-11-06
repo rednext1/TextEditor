@@ -569,7 +569,9 @@ namespace TextEditor
         private void toolStripButton_list_Click(object sender, EventArgs e)
         {
             richTextBox_Main.SelectionIndent = 50;
+            this.richTextBox_Main.DragDrop -= new DragEventHandler(this.textBox_Main_DragDrop);
             SendKeys.Send($"^+{'L'}");
+            this.richTextBox_Main.DragDrop += new DragEventHandler(this.textBox_Main_DragDrop);
         }
 
         //Adding lists to richtextbox - Art End
