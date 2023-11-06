@@ -15,7 +15,7 @@ namespace TextEditor
         //Last File Recently File -> Yan End
 
         //TrackBar_Zoom ->Serg Start
-        float start_zoom_scale=1f;
+        float start_zoom_scale = 1f;
         //TrackBar_Zoom ->Serg End
 
         public Main_Form()
@@ -356,6 +356,11 @@ namespace TextEditor
             richTextBox_Main.Clear();
         }
 
+        private void toolStripMenuItem_Delete_Click(object sender, EventArgs e)
+        {
+            richTextBox_Main.SelectedText = "";
+        }
+
         //Recent file -> Yan start
         private void SaveRecentFile(string path)
         {
@@ -569,6 +574,7 @@ namespace TextEditor
             SendKeys.Send("^+{L}");
             this.richTextBox_Main.DragDrop += new DragEventHandler(this.textBox_Main_DragDrop);
         }
+
         //Adding lists to richtextbox - Art End
 
 

@@ -82,6 +82,14 @@
             toolStripSeparator8 = new ToolStripSeparator();
             richTextBox_Main = new RichTextBox();
             contextMenuStrip_richTXTbox = new ContextMenuStrip(components);
+            toolStripMenuItem_Undo = new ToolStripMenuItem();
+            toolStripSeparator14 = new ToolStripSeparator();
+            toolStripMenuItem_Cut = new ToolStripMenuItem();
+            toolStripMenuItem_Copy = new ToolStripMenuItem();
+            toolStripMenuItem_Paste = new ToolStripMenuItem();
+            toolStripMenuItem_Delete = new ToolStripMenuItem();
+            toolStripSeparator15 = new ToolStripSeparator();
+            toolStripMenuItem_Sell_All = new ToolStripMenuItem();
             statusStrip1 = new StatusStrip();
             toolStripStatusLabel_CursorPosition = new ToolStripStatusLabel();
             toolStripStatusLabel_Rec = new ToolStripStatusLabel();
@@ -89,6 +97,7 @@
             label_curr_zoom = new Label();
             menuStrip_en.SuspendLayout();
             toolStrip1.SuspendLayout();
+            contextMenuStrip_richTXTbox.SuspendLayout();
             statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)trackBar_Zoom).BeginInit();
             SuspendLayout();
@@ -497,6 +506,7 @@
             // richTextBox_Main
             // 
             richTextBox_Main.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            richTextBox_Main.ContextMenuStrip = contextMenuStrip_richTXTbox;
             richTextBox_Main.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             richTextBox_Main.Location = new Point(0, 67);
             richTextBox_Main.Name = "richTextBox_Main";
@@ -509,8 +519,66 @@
             // contextMenuStrip_richTXTbox
             // 
             contextMenuStrip_richTXTbox.AllowDrop = true;
+            contextMenuStrip_richTXTbox.Items.AddRange(new ToolStripItem[] { toolStripMenuItem_Undo, toolStripSeparator14, toolStripMenuItem_Cut, toolStripMenuItem_Copy, toolStripMenuItem_Paste, toolStripMenuItem_Delete, toolStripSeparator15, toolStripMenuItem_Sell_All });
             contextMenuStrip_richTXTbox.Name = "contextMenuStrip_richTXTbox";
-            contextMenuStrip_richTXTbox.Size = new Size(61, 4);
+            contextMenuStrip_richTXTbox.Size = new Size(181, 170);
+            // 
+            // toolStripMenuItem_Undo
+            // 
+            toolStripMenuItem_Undo.Image = Properties.Resources.cancel;
+            toolStripMenuItem_Undo.Name = "toolStripMenuItem_Undo";
+            toolStripMenuItem_Undo.Size = new Size(180, 22);
+            toolStripMenuItem_Undo.Text = "Undo";
+            toolStripMenuItem_Undo.Click += toolStripButton_Undo_Click;
+            // 
+            // toolStripSeparator14
+            // 
+            toolStripSeparator14.Name = "toolStripSeparator14";
+            toolStripSeparator14.Size = new Size(177, 6);
+            // 
+            // toolStripMenuItem_Cut
+            // 
+            toolStripMenuItem_Cut.Image = Properties.Resources.cut;
+            toolStripMenuItem_Cut.Name = "toolStripMenuItem_Cut";
+            toolStripMenuItem_Cut.Size = new Size(180, 22);
+            toolStripMenuItem_Cut.Text = "Cut";
+            toolStripMenuItem_Cut.Click += cutToolStripMenuItem_Click;
+            // 
+            // toolStripMenuItem_Copy
+            // 
+            toolStripMenuItem_Copy.Image = Properties.Resources.copy;
+            toolStripMenuItem_Copy.Name = "toolStripMenuItem_Copy";
+            toolStripMenuItem_Copy.Size = new Size(180, 22);
+            toolStripMenuItem_Copy.Text = "Copy";
+            toolStripMenuItem_Copy.Click += copyToolStripMenuItem_Click;
+            // 
+            // toolStripMenuItem_Paste
+            // 
+            toolStripMenuItem_Paste.Image = Properties.Resources.insert;
+            toolStripMenuItem_Paste.Name = "toolStripMenuItem_Paste";
+            toolStripMenuItem_Paste.Size = new Size(180, 22);
+            toolStripMenuItem_Paste.Text = "Paste";
+            toolStripMenuItem_Paste.Click += pasteToolStripMenuItem_Click;
+            // 
+            // toolStripMenuItem_Delete
+            // 
+            toolStripMenuItem_Delete.Image = Properties.Resources.delete;
+            toolStripMenuItem_Delete.Name = "toolStripMenuItem_Delete";
+            toolStripMenuItem_Delete.Size = new Size(180, 22);
+            toolStripMenuItem_Delete.Text = "Delete";
+            toolStripMenuItem_Delete.Click += toolStripMenuItem_Delete_Click;
+            // 
+            // toolStripSeparator15
+            // 
+            toolStripSeparator15.Name = "toolStripSeparator15";
+            toolStripSeparator15.Size = new Size(177, 6);
+            // 
+            // toolStripMenuItem_Sell_All
+            // 
+            toolStripMenuItem_Sell_All.Name = "toolStripMenuItem_Sell_All";
+            toolStripMenuItem_Sell_All.Size = new Size(180, 22);
+            toolStripMenuItem_Sell_All.Text = "Sellect All";
+            toolStripMenuItem_Sell_All.Click += toolStripMenuItem_SellAll_Click;
             // 
             // statusStrip1
             // 
@@ -580,6 +648,7 @@
             menuStrip_en.PerformLayout();
             toolStrip1.ResumeLayout(false);
             toolStrip1.PerformLayout();
+            contextMenuStrip_richTXTbox.ResumeLayout(false);
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)trackBar_Zoom).EndInit();
@@ -646,5 +715,13 @@
         private ToolStripMenuItem toolStripMenuItem_SellAll;
         private ToolStripButton toolStripButton_list;
         private ToolStripSeparator toolStripSeparator13;
+        private ToolStripMenuItem toolStripMenuItem_Undo;
+        private ToolStripSeparator toolStripSeparator14;
+        private ToolStripMenuItem toolStripMenuItem_Cut;
+        private ToolStripMenuItem toolStripMenuItem_Copy;
+        private ToolStripMenuItem toolStripMenuItem_Paste;
+        private ToolStripMenuItem toolStripMenuItem_Delete;
+        private ToolStripSeparator toolStripSeparator15;
+        private ToolStripMenuItem toolStripMenuItem_Sell_All;
     }
 }
