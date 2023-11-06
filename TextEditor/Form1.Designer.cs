@@ -110,7 +110,7 @@
             menuStrip_en.Items.AddRange(new ToolStripItem[] { recentlyFileToolStripMenuItem, fileToolStripMenuItem, editToolStripMenuItem });
             menuStrip_en.Location = new Point(0, 0);
             menuStrip_en.Name = "menuStrip_en";
-            menuStrip_en.Size = new Size(937, 24);
+            menuStrip_en.Size = new Size(960, 24);
             menuStrip_en.TabIndex = 0;
             menuStrip_en.Text = "menuStrip1";
             // 
@@ -231,7 +231,7 @@
             toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripButton_New_Doc, toolStripButton_Open, toolStripSeparator1, toolStripButton_Save, toolStripButton_SaveAs, toolStripSeparator2, toolStripComboBox_Font, toolStripSeparator3, toolStripComboBox_Size, toolStripSeparator4, toolStripButt_Bold, toolStripButt_Italic, StripButt_Underline, toolStripButt_Strike, toolStripSeparator5, toolStripButt_FrontColor, toolStripButt_BackFrontColor, toolStripSeparator6, toolStripButton_list, toolStripSeparator13, toolStripButton_Undo, toolStripButton_Redo, toolStripSeparator9, toolStripButton_Copy, toolStripButton_Cut, toolStripSeparator7, toolStripButton_Paste, toolStripButton_PasteAsText, toolStripSeparator10, toolStripButton_clear_all, toolStripTextBox_search, toolStripButton_search, toolStripSeparator8 });
             toolStrip1.Location = new Point(0, 24);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(937, 40);
+            toolStrip1.Size = new Size(960, 40);
             toolStrip1.Stretch = true;
             toolStrip1.TabIndex = 1;
             toolStrip1.Text = "toolStrip1";
@@ -485,7 +485,7 @@
             // toolStripTextBox_search
             // 
             toolStripTextBox_search.Name = "toolStripTextBox_search";
-            toolStripTextBox_search.Size = new Size(100, 23);
+            toolStripTextBox_search.Size = new Size(100, 40);
             toolStripTextBox_search.ToolTipText = "Search...";
             // 
             // toolStripButton_search
@@ -494,7 +494,7 @@
             toolStripButton_search.Image = Properties.Resources.search;
             toolStripButton_search.ImageTransparentColor = Color.Magenta;
             toolStripButton_search.Name = "toolStripButton_search";
-            toolStripButton_search.Size = new Size(28, 28);
+            toolStripButton_search.Size = new Size(28, 37);
             toolStripButton_search.Text = "Search";
             toolStripButton_search.Click += toolStripButton_search_Click;
             // 
@@ -511,7 +511,7 @@
             richTextBox_Main.Location = new Point(0, 67);
             richTextBox_Main.Name = "richTextBox_Main";
             richTextBox_Main.ScrollBars = RichTextBoxScrollBars.ForcedBoth;
-            richTextBox_Main.Size = new Size(886, 539);
+            richTextBox_Main.Size = new Size(909, 539);
             richTextBox_Main.TabIndex = 0;
             richTextBox_Main.Text = "";
             richTextBox_Main.KeyDown += richTextBox_Main_KeyDown;
@@ -521,26 +521,26 @@
             contextMenuStrip_richTXTbox.AllowDrop = true;
             contextMenuStrip_richTXTbox.Items.AddRange(new ToolStripItem[] { toolStripMenuItem_Undo, toolStripSeparator14, toolStripMenuItem_Cut, toolStripMenuItem_Copy, toolStripMenuItem_Paste, toolStripMenuItem_Delete, toolStripSeparator15, toolStripMenuItem_Sell_All });
             contextMenuStrip_richTXTbox.Name = "contextMenuStrip_richTXTbox";
-            contextMenuStrip_richTXTbox.Size = new Size(181, 170);
+            contextMenuStrip_richTXTbox.Size = new Size(126, 148);
             // 
             // toolStripMenuItem_Undo
             // 
             toolStripMenuItem_Undo.Image = Properties.Resources.cancel;
             toolStripMenuItem_Undo.Name = "toolStripMenuItem_Undo";
-            toolStripMenuItem_Undo.Size = new Size(180, 22);
+            toolStripMenuItem_Undo.Size = new Size(125, 22);
             toolStripMenuItem_Undo.Text = "Undo";
             toolStripMenuItem_Undo.Click += toolStripButton_Undo_Click;
             // 
             // toolStripSeparator14
             // 
             toolStripSeparator14.Name = "toolStripSeparator14";
-            toolStripSeparator14.Size = new Size(177, 6);
+            toolStripSeparator14.Size = new Size(122, 6);
             // 
             // toolStripMenuItem_Cut
             // 
             toolStripMenuItem_Cut.Image = Properties.Resources.cut;
             toolStripMenuItem_Cut.Name = "toolStripMenuItem_Cut";
-            toolStripMenuItem_Cut.Size = new Size(180, 22);
+            toolStripMenuItem_Cut.Size = new Size(125, 22);
             toolStripMenuItem_Cut.Text = "Cut";
             toolStripMenuItem_Cut.Click += cutToolStripMenuItem_Click;
             // 
@@ -548,7 +548,7 @@
             // 
             toolStripMenuItem_Copy.Image = Properties.Resources.copy;
             toolStripMenuItem_Copy.Name = "toolStripMenuItem_Copy";
-            toolStripMenuItem_Copy.Size = new Size(180, 22);
+            toolStripMenuItem_Copy.Size = new Size(125, 22);
             toolStripMenuItem_Copy.Text = "Copy";
             toolStripMenuItem_Copy.Click += copyToolStripMenuItem_Click;
             // 
@@ -556,7 +556,7 @@
             // 
             toolStripMenuItem_Paste.Image = Properties.Resources.insert;
             toolStripMenuItem_Paste.Name = "toolStripMenuItem_Paste";
-            toolStripMenuItem_Paste.Size = new Size(180, 22);
+            toolStripMenuItem_Paste.Size = new Size(125, 22);
             toolStripMenuItem_Paste.Text = "Paste";
             toolStripMenuItem_Paste.Click += pasteToolStripMenuItem_Click;
             // 
@@ -564,19 +564,19 @@
             // 
             toolStripMenuItem_Delete.Image = Properties.Resources.delete;
             toolStripMenuItem_Delete.Name = "toolStripMenuItem_Delete";
-            toolStripMenuItem_Delete.Size = new Size(180, 22);
+            toolStripMenuItem_Delete.Size = new Size(125, 22);
             toolStripMenuItem_Delete.Text = "Delete";
             toolStripMenuItem_Delete.Click += toolStripMenuItem_Delete_Click;
             // 
             // toolStripSeparator15
             // 
             toolStripSeparator15.Name = "toolStripSeparator15";
-            toolStripSeparator15.Size = new Size(177, 6);
+            toolStripSeparator15.Size = new Size(122, 6);
             // 
             // toolStripMenuItem_Sell_All
             // 
             toolStripMenuItem_Sell_All.Name = "toolStripMenuItem_Sell_All";
-            toolStripMenuItem_Sell_All.Size = new Size(180, 22);
+            toolStripMenuItem_Sell_All.Size = new Size(125, 22);
             toolStripMenuItem_Sell_All.Text = "Sellect All";
             toolStripMenuItem_Sell_All.Click += toolStripMenuItem_SellAll_Click;
             // 
@@ -587,7 +587,7 @@
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel_CursorPosition, toolStripStatusLabel_Rec });
             statusStrip1.Location = new Point(0, 603);
             statusStrip1.Name = "statusStrip1";
-            statusStrip1.Size = new Size(937, 22);
+            statusStrip1.Size = new Size(960, 22);
             statusStrip1.TabIndex = 3;
             statusStrip1.Text = "statusStrip1";
             // 
@@ -609,7 +609,7 @@
             // 
             trackBar_Zoom.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             trackBar_Zoom.LargeChange = 1;
-            trackBar_Zoom.Location = new Point(892, 67);
+            trackBar_Zoom.Location = new Point(915, 67);
             trackBar_Zoom.Name = "trackBar_Zoom";
             trackBar_Zoom.Orientation = Orientation.Vertical;
             trackBar_Zoom.Size = new Size(45, 533);
@@ -622,7 +622,7 @@
             // 
             label_curr_zoom.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             label_curr_zoom.AutoSize = true;
-            label_curr_zoom.Location = new Point(826, 607);
+            label_curr_zoom.Location = new Point(849, 607);
             label_curr_zoom.Name = "label_curr_zoom";
             label_curr_zoom.Size = new Size(69, 15);
             label_curr_zoom.TabIndex = 5;
@@ -632,7 +632,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(937, 625);
+            ClientSize = new Size(960, 625);
             Controls.Add(label_curr_zoom);
             Controls.Add(trackBar_Zoom);
             Controls.Add(statusStrip1);
