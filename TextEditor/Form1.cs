@@ -579,8 +579,17 @@ namespace TextEditor
         //Adding lists to richtextbox - Art start
         private void toolStripButton_list_Click(object sender, EventArgs e)
         {
-            richTextBox_Main.SelectionIndent = 50;
-            SendKeys.SendWait($"{'^'}{'+'}{'L'}");
+            IntPtr windowHandle = IntPtr.Zero;
+            var processes = System.Diagnostics.Process.GetProcessesByName("TextEditor");
+            if (processes.Length > 0)
+            {
+                windowHandle = processes[0].MainWindowHandle;
+            }
+            if (windowHandle != IntPtr.Zero)
+            {
+                richTextBox_Main.SelectionIndent = 50;
+                SendKeys.SendWait($"^+L");
+            }
         }
         //Adding lists to richtextbox - Art End
 
