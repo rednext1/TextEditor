@@ -579,6 +579,7 @@ namespace TextEditor
         //Adding lists to richtextbox - Art start
         private void toolStripButton_list_Click(object sender, EventArgs e)
         {
+
             IntPtr windowHandle = IntPtr.Zero;
             var processes = System.Diagnostics.Process.GetProcessesByName("TextEditor");
             if (processes.Length > 0)
@@ -590,6 +591,8 @@ namespace TextEditor
                 richTextBox_Main.SelectionIndent = 50;
                 SendKeys.SendWait($"^+L");
             }
+         
+
         }
         //Adding lists to richtextbox - Art End
 
@@ -636,7 +639,6 @@ namespace TextEditor
                 DateTime.Now.ToShortTimeString());
 
             //Preview the document
-            //using (var dlg = new PrintPreviewDialog()) // also works, but not as nice...
             using (var dlg = new PrintPreview.PrintPreviewDialog())
             {
                 dlg.Document = doc;
