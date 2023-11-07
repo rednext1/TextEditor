@@ -581,8 +581,20 @@ namespace TextEditor
         bool bulletOnTextBox = false;
         private void toolStripButton_list_Click(object sender, EventArgs e)
         {
-            richTextBox_Main.SelectionIndent = 50;
-            SendKeys.SendWait("+^{L}");
+
+            IntPtr windowHandle = IntPtr.Zero;
+            var processes = System.Diagnostics.Process.GetProcessesByName("TextEditor");
+            if (processes.Length > 0)
+            {
+                windowHandle = processes[0].MainWindowHandle;
+            }
+            if (windowHandle != IntPtr.Zero)
+            {
+                richTextBox_Main.SelectionIndent = 50;
+                SendKeys.SendWait($"^+L");
+            }
+         
+
         }
         //Adding lists to richtextbox - Art End
 
@@ -629,7 +641,6 @@ namespace TextEditor
                 DateTime.Now.ToShortTimeString());
 
             //Preview the document
-            //using (var dlg = new PrintPreviewDialog()) // also works, but not as nice...
             using (var dlg = new PrintPreview.PrintPreviewDialog())
             {
                 dlg.Document = doc;
