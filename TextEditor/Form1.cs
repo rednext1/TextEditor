@@ -1,6 +1,8 @@
+using System.Globalization;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using static System.Net.Mime.MediaTypeNames;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrayNotify;
 
 namespace TextEditor
@@ -578,10 +580,30 @@ namespace TextEditor
         }
 
         //Adding lists to richtextbox - Art start
+
+        [DllImport("user32.dll", SetLastError = true)]
+        public static extern ushort GetKeyboardLayout([In] int idThread);
+        [DllImport("user32.dll", SetLastError = true)]
+        public static extern int GetWindowThreadProcessId([In] IntPtr hWnd, [Out, Optional] IntPtr lpdwProcessId);
+        [DllImport("user32.dll", SetLastError = true)]
+        public static extern IntPtr GetForegroundWindow();
+        public static string mss;
+
+        static ushort GetKeyboardLayout()
+        {
+            return (ushort)GetKeyboardLayout(GetWindowThreadProcessId(GetForegroundWindow(), IntPtr.Zero));
+        }
         private void toolStripButton_list_Click(object sender, EventArgs e)
         {
+            int id = GetKeyboardLayout();
+            CultureInfo ci = CultureInfo.GetCultureInfo(id);
             richTextBox_Main.SelectionIndent = 50;
-            SendKeys.SendWait("+^(l)");
+            string tmp;
+            if(ci.ThreeLetterISOLanguageName == "eng")tmp = "L";
+            else tmp = "Ä";
+            SendKeys.SendWait($"^+{tmp}");
+           
+          
         }
         //Adding lists to richtextbox - Art End
 
