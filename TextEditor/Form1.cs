@@ -580,30 +580,18 @@ namespace TextEditor
         }
 
         //Adding lists to richtextbox - Art start
-
-        [DllImport("user32.dll", SetLastError = true)]
-        public static extern ushort GetKeyboardLayout([In] int idThread);
-        [DllImport("user32.dll", SetLastError = true)]
-        public static extern int GetWindowThreadProcessId([In] IntPtr hWnd, [Out, Optional] IntPtr lpdwProcessId);
-        [DllImport("user32.dll", SetLastError = true)]
-        public static extern IntPtr GetForegroundWindow();
-        public static string mss;
-
-        static ushort GetKeyboardLayout()
-        {
-            return (ushort)GetKeyboardLayout(GetWindowThreadProcessId(GetForegroundWindow(), IntPtr.Zero));
-        }
         private void toolStripButton_list_Click(object sender, EventArgs e)
         {
-            int id = GetKeyboardLayout();
-            CultureInfo ci = CultureInfo.GetCultureInfo(id);
-            richTextBox_Main.SelectionIndent = 50;
-            string tmp;
-            if(ci.ThreeLetterISOLanguageName == "eng")tmp = "L";
-            else tmp = "Ä";
-            SendKeys.SendWait($"^+{tmp}");
-           
-          
+            if (richTextBox_Main.Lines.Length > 1)
+            {
+                string str = richTextBox_Main.Lines[richTextBox_Main.Lines.Length - 2];
+                richTextBox_Main.SelectionIndent = str.Length * 8;
+            }
+            else richTextBox_Main.SelectionIndent = 50;
+            InputLanguage inputLanguage = InputLanguage.CurrentInputLanguage;
+            InputLanguage.CurrentInputLanguage = InputLanguage.FromCulture(new CultureInfo("en-US"));
+            SendKeys.SendWait($"^+L");
+            InputLanguage.CurrentInputLanguage = inputLanguage;
         }
         //Adding lists to richtextbox - Art End
 
