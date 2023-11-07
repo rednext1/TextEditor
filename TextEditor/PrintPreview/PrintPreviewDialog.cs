@@ -27,11 +27,6 @@ namespace TextEditor.PrintPreview
             }
         }
 
-        private void userPrintPreviewControl1_Load(object sender, EventArgs e)
-        {
-
-        }
-
         public PrintDocument Document
         {
             get { return doc; }

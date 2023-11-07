@@ -53,46 +53,47 @@
             // 
             // toolStrip1
             // 
+            toolStrip1.AutoSize = false;
+            toolStrip1.ImageScalingSize = new Size(24, 24);
             toolStrip1.Items.AddRange(new ToolStripItem[] { btnPrint, btnPageSetup, toolStripSeparator1, btnZoom, btnFirst, btnPrev, txtStartPage, lbPageCount, btnNext, btnLast, toolStripSeparator2, btnCancel });
             toolStrip1.Location = new Point(0, 0);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(800, 25);
+            toolStrip1.Size = new Size(800, 40);
+            toolStrip1.Stretch = true;
             toolStrip1.TabIndex = 0;
             toolStrip1.Text = "toolStrip1";
             // 
             // btnPrint
             // 
-            btnPrint.DisplayStyle = ToolStripItemDisplayStyle.Text;
-            btnPrint.Image = (Image)resources.GetObject("btnPrint.Image");
+            btnPrint.Image = Properties.Resources.printer;
             btnPrint.ImageTransparentColor = Color.Magenta;
             btnPrint.Name = "btnPrint";
-            btnPrint.Size = new Size(36, 22);
+            btnPrint.Size = new Size(60, 37);
             btnPrint.Text = "Print";
             btnPrint.Click += btnPrint_Click;
             // 
             // btnPageSetup
             // 
-            btnPageSetup.DisplayStyle = ToolStripItemDisplayStyle.Text;
-            btnPageSetup.Image = (Image)resources.GetObject("btnPageSetup.Image");
+            btnPageSetup.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            btnPageSetup.Image = Properties.Resources.pageSettings;
             btnPageSetup.ImageTransparentColor = Color.Magenta;
             btnPageSetup.Name = "btnPageSetup";
-            btnPageSetup.Size = new Size(70, 22);
+            btnPageSetup.Size = new Size(28, 37);
             btnPageSetup.Text = "Page Setup";
             btnPageSetup.Click += btnPageSetup_Click;
             // 
             // toolStripSeparator1
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(6, 25);
+            toolStripSeparator1.Size = new Size(6, 40);
             // 
             // btnZoom
             // 
-            btnZoom.DisplayStyle = ToolStripItemDisplayStyle.Text;
             btnZoom.DropDownItems.AddRange(new ToolStripItem[] { itemActualSize, itemPageWidth, itemFullPage, itemTwoPages });
-            btnZoom.Image = (Image)resources.GetObject("btnZoom.Image");
+            btnZoom.Image = Properties.Resources.magnifier;
             btnZoom.ImageTransparentColor = Color.Magenta;
             btnZoom.Name = "btnZoom";
-            btnZoom.Size = new Size(55, 22);
+            btnZoom.Size = new Size(79, 37);
             btnZoom.Text = "Zoom";
             btnZoom.ButtonClick += btnZoom_ButtonClick;
             btnZoom.DropDownItemClicked += btnZoom_DropDownItemClicked;
@@ -123,28 +124,28 @@
             // 
             // btnFirst
             // 
-            btnFirst.DisplayStyle = ToolStripItemDisplayStyle.Text;
-            btnFirst.Image = (Image)resources.GetObject("btnFirst.Image");
+            btnFirst.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            btnFirst.Image = Properties.Resources.Sback;
             btnFirst.ImageTransparentColor = Color.Magenta;
             btnFirst.Name = "btnFirst";
-            btnFirst.Size = new Size(62, 22);
+            btnFirst.Size = new Size(28, 37);
             btnFirst.Text = "First Page";
             btnFirst.Click += btnFirst_Click;
             // 
             // btnPrev
             // 
-            btnPrev.DisplayStyle = ToolStripItemDisplayStyle.Text;
-            btnPrev.Image = (Image)resources.GetObject("btnPrev.Image");
+            btnPrev.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            btnPrev.Image = Properties.Resources.rBack;
             btnPrev.ImageTransparentColor = Color.Magenta;
             btnPrev.Name = "btnPrev";
-            btnPrev.Size = new Size(85, 22);
+            btnPrev.Size = new Size(28, 37);
             btnPrev.Text = "Previous Page";
             btnPrev.Click += btnPrev_Click;
             // 
             // txtStartPage
             // 
             txtStartPage.Name = "txtStartPage";
-            txtStartPage.Size = new Size(23, 25);
+            txtStartPage.Size = new Size(23, 40);
             txtStartPage.Enter += txtStartPage_Enter;
             txtStartPage.KeyPress += txtStartPage_KeyPress;
             txtStartPage.Validating += txtStartPage_Validating;
@@ -152,40 +153,39 @@
             // lbPageCount
             // 
             lbPageCount.Name = "lbPageCount";
-            lbPageCount.Size = new Size(0, 22);
+            lbPageCount.Size = new Size(0, 37);
             // 
             // btnNext
             // 
-            btnNext.DisplayStyle = ToolStripItemDisplayStyle.Text;
-            btnNext.Image = (Image)resources.GetObject("btnNext.Image");
+            btnNext.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            btnNext.Image = Properties.Resources.rForward;
             btnNext.ImageTransparentColor = Color.Magenta;
             btnNext.Name = "btnNext";
-            btnNext.Size = new Size(65, 22);
+            btnNext.Size = new Size(28, 37);
             btnNext.Text = "Next Page";
             btnNext.Click += btnNext_Click;
             // 
             // btnLast
             // 
-            btnLast.DisplayStyle = ToolStripItemDisplayStyle.Text;
-            btnLast.Image = (Image)resources.GetObject("btnLast.Image");
+            btnLast.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            btnLast.Image = Properties.Resources.Sforward;
             btnLast.ImageTransparentColor = Color.Magenta;
             btnLast.Name = "btnLast";
-            btnLast.Size = new Size(61, 22);
+            btnLast.Size = new Size(28, 37);
             btnLast.Text = "Last Page";
             btnLast.Click += btnLast_Click;
             // 
             // toolStripSeparator2
             // 
             toolStripSeparator2.Name = "toolStripSeparator2";
-            toolStripSeparator2.Size = new Size(6, 25);
+            toolStripSeparator2.Size = new Size(6, 40);
             // 
             // btnCancel
             // 
-            btnCancel.DisplayStyle = ToolStripItemDisplayStyle.Text;
-            btnCancel.Image = (Image)resources.GetObject("btnCancel.Image");
+            btnCancel.Image = Properties.Resources.delete;
             btnCancel.ImageTransparentColor = Color.Magenta;
             btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(47, 22);
+            btnCancel.Size = new Size(71, 37);
             btnCancel.Text = "Cancel";
             btnCancel.Click += btnCancel_Click;
             // 
@@ -194,13 +194,12 @@
             preview.AutoScroll = true;
             preview.Dock = DockStyle.Fill;
             preview.Document = null;
-            preview.Location = new Point(0, 25);
+            preview.Location = new Point(0, 40);
             preview.Name = "preview";
-            preview.Size = new Size(800, 425);
+            preview.Size = new Size(800, 410);
             preview.TabIndex = 1;
             preview.StartPageChanged += preview_StartPageChanged;
             preview.PageCountChanged += preview_PageCountChanged;
-            preview.Load += userPrintPreviewControl1_Load;
             // 
             // PrintPreviewDialog
             // 
@@ -215,7 +214,6 @@
             toolStrip1.ResumeLayout(false);
             toolStrip1.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
