@@ -26,6 +26,7 @@ namespace TextEditor
 
         public Main_Form()
         {
+           
             InitializeComponent();
             //Development of Undo-Redo - Art Start
             Init_Undo_Redo();
@@ -577,12 +578,11 @@ namespace TextEditor
         }
 
         //Adding lists to richtextbox - Art start
+        bool bulletOnTextBox = false;
         private void toolStripButton_list_Click(object sender, EventArgs e)
         {
-            SendKeys.Flush();
             richTextBox_Main.SelectionIndent = 50;
-            SendKeys.Send("^+{L}");
-            
+            SendKeys.SendWait("+^{L}");
         }
         //Adding lists to richtextbox - Art End
 
