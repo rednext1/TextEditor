@@ -63,6 +63,9 @@
     <None Update="Resources\open.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Resources\printer.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Resources\save as.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
