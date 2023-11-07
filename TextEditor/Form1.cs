@@ -611,7 +611,30 @@ namespace TextEditor
             toolStripButton_textRight.BackColor = Color.LightBlue;
         }
         // text positioning - Art end
-        
+
+        //Print -> Yan Start
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            // create document
+            var doc = new RichTextBoxDocument(richTextBox_Main);
+
+            // set document header and footer
+            // use [page] to get the current page number in headers and footers
+            // use [pages] to get the page count in headers and footers
+            doc.Header = string.Format("\t -> TextEditor <- \r\n {0} ", doc_name);
+            doc.Footer = string.Format("{0}\t{1}\tPage [page] of [pages]",
+                DateTime.Today.ToShortDateString(),
+                DateTime.Now.ToShortTimeString());
+
+            //Preview the document
+            //using (var dlg = new PrintPreviewDialog()) // also works, but not as nice...
+            using (var dlg = new PrintPreview.PrintPreviewDialog())
+            {
+                dlg.Document = doc;
+                dlg.ShowDialog(this);
+            }
+        }
+        //Print -> Yan End
 
 
 
