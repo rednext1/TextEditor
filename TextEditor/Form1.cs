@@ -26,6 +26,7 @@ namespace TextEditor
 
         public Main_Form()
         {
+           
             InitializeComponent();
             //Development of Undo-Redo - Art Start
             Init_Undo_Redo();
@@ -579,20 +580,8 @@ namespace TextEditor
         //Adding lists to richtextbox - Art start
         private void toolStripButton_list_Click(object sender, EventArgs e)
         {
-
-            IntPtr windowHandle = IntPtr.Zero;
-            var processes = System.Diagnostics.Process.GetProcessesByName("TextEditor");
-            if (processes.Length > 0)
-            {
-                windowHandle = processes[0].MainWindowHandle;
-            }
-            if (windowHandle != IntPtr.Zero)
-            {
-                richTextBox_Main.SelectionIndent = 50;
-                SendKeys.SendWait($"^+L");
-            }
-         
-
+            richTextBox_Main.SelectionIndent = 50;
+            SendKeys.SendWait("+^(l)");
         }
         //Adding lists to richtextbox - Art End
 
