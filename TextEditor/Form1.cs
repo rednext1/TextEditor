@@ -28,7 +28,7 @@ namespace TextEditor
 
         public Main_Form()
         {
-           
+
             InitializeComponent();
             //Development of Undo-Redo - Art Start
             Init_Undo_Redo();
@@ -460,7 +460,10 @@ namespace TextEditor
             col = index - SendMessage(richTextBox_Main.Handle, EM_LINEINDEX, -1, 0);
             toolStripStatusLabel_CursorPosition.Text = "Row: " + (++line).ToString() + ", Col: " + (++col).ToString();
         }
-
+        private void richTextBox_Main_MouseDown(object sender, MouseEventArgs e)
+        {
+            this.UpdateCaretPos();
+        }
         private void Init_Mod()
         {
             this.Upd_Mod();
@@ -645,6 +648,8 @@ namespace TextEditor
             }
         }
         //Print -> Yan End
+        
+
 
 
 
