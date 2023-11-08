@@ -53,6 +53,8 @@
             toolStripSeparator1 = new ToolStripSeparator();
             toolStripButton_Save = new ToolStripButton();
             toolStripButton_SaveAs = new ToolStripButton();
+            toolStripSeparator8 = new ToolStripSeparator();
+            btnPrint = new ToolStripButton();
             toolStripSeparator2 = new ToolStripSeparator();
             toolStripComboBox_Font = new ToolStripComboBox();
             toolStripSeparator3 = new ToolStripSeparator();
@@ -84,8 +86,6 @@
             toolStripButton_clear_all = new ToolStripButton();
             toolStripTextBox_search = new ToolStripTextBox();
             toolStripButton_search = new ToolStripButton();
-            toolStripSeparator8 = new ToolStripSeparator();
-            btnPrint = new ToolStripButton();
             richTextBox_Main = new RichTextBox();
             contextMenuStrip_richTXTbox = new ContextMenuStrip(components);
             toolStripMenuItem_Undo = new ToolStripMenuItem();
@@ -294,6 +294,21 @@
             toolStripButton_SaveAs.Size = new Size(28, 37);
             toolStripButton_SaveAs.Text = "Save As";
             toolStripButton_SaveAs.Click += toolStripButton_SaveAs_Click;
+            // 
+            // toolStripSeparator8
+            // 
+            toolStripSeparator8.Name = "toolStripSeparator8";
+            toolStripSeparator8.Size = new Size(6, 40);
+            // 
+            // btnPrint
+            // 
+            btnPrint.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            btnPrint.Image = Properties.Resources.printer;
+            btnPrint.ImageTransparentColor = Color.Magenta;
+            btnPrint.Name = "btnPrint";
+            btnPrint.Size = new Size(28, 37);
+            btnPrint.Text = "Print";
+            btnPrint.Click += btnPrint_Click;
             // 
             // toolStripSeparator2
             // 
@@ -548,21 +563,6 @@
             toolStripButton_search.Text = "Search";
             toolStripButton_search.Click += toolStripButton_search_Click;
             // 
-            // toolStripSeparator8
-            // 
-            toolStripSeparator8.Name = "toolStripSeparator8";
-            toolStripSeparator8.Size = new Size(6, 40);
-            // 
-            // btnPrint
-            // 
-            btnPrint.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            btnPrint.Image = Properties.Resources.printer;
-            btnPrint.ImageTransparentColor = Color.Magenta;
-            btnPrint.Name = "btnPrint";
-            btnPrint.Size = new Size(28, 37);
-            btnPrint.Text = "Print";
-            btnPrint.Click += btnPrint_Click;
-            // 
             // richTextBox_Main
             // 
             richTextBox_Main.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
@@ -575,6 +575,7 @@
             richTextBox_Main.TabIndex = 0;
             richTextBox_Main.Text = "";
             richTextBox_Main.KeyDown += richTextBox_Main_KeyDown;
+            richTextBox_Main.MouseDown += richTextBox_Main_MouseDown;
             // 
             // contextMenuStrip_richTXTbox
             // 
