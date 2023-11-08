@@ -124,6 +124,7 @@ namespace TextEditor
             LoadDocument(fileName);
             doc_name = fileName;
             this.Text = "TextEditor -" + fileName;
+            SaveRecentFile(fileName); //insert to list so that opened file will shown on the list -> Yan
         }
 
         private void LoadDocument(string _path)
@@ -378,7 +379,6 @@ namespace TextEditor
         //Recent file -> Yan start
         private void SaveRecentFile(string path)
         {
-
             recentlyFileToolStripMenuItem.DropDownItems.Clear();
             LoadRecentList();
             if (!(MeM_LisT.Contains(path)))
@@ -389,7 +389,6 @@ namespace TextEditor
             }
             foreach (string item in MeM_LisT)
             {
-
                 ToolStripMenuItem fileRecent = new ToolStripMenuItem(item, null, RecentFile_click);
                 recentlyFileToolStripMenuItem.DropDownItems.Add(fileRecent);
             }
