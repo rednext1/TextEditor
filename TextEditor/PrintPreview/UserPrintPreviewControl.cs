@@ -23,9 +23,6 @@ namespace TextEditor.PrintPreview
         }
     internal partial class UserPrintPreviewControl : UserControl
     {
-            //InitializeComponent();
-
-            ////
             PrintDocument doc;
             ZoomMode zoomMode;
             double zoom;

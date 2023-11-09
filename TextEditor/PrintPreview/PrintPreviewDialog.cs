@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace TextEditor.PrintPreview
@@ -21,6 +22,7 @@ namespace TextEditor.PrintPreview
         public PrintPreviewDialog(Control parentForm)
         {
             InitializeComponent();
+            InitZoom();
             if (parentForm != null)
             {
                 Size = parentForm.Size;
@@ -134,6 +136,24 @@ namespace TextEditor.PrintPreview
             }
 
 
+        }
+
+        private void InitZoom()
+        {
+            this.cbxZoom.DropDownStyle = ComboBoxStyle.DropDownList;
+            foreach (double zoom in new double[] { .25, .5, .75, 1, 1.25, 1.5, 2.0, 2.5, 3.0 })
+            {
+                cbxZoom.Items.Add((zoom * 100).ToString() + "%");
+            }
+            this.cbxZoom.SelectedIndex = 0;
+            this.cbxZoom.SelectedIndexChanged += delegate { this.UpdZoomFactor(); };
+        }
+
+        private void UpdZoomFactor()
+        {
+            double zoomCurrent = this.preview.Zoom;
+            bool isScale = cbxZoom.Items.Contains(zoomCurrent.ToString() + "%");
+            preview.Zoom = isScale ? zoomCurrent : double.Parse(cbxZoom.SelectedItem.ToString().Replace("%", "")) / 100.0;
         }
 
         private void btnFirst_Click(object sender, EventArgs e)
