@@ -46,6 +46,7 @@
             btnLast = new ToolStripButton();
             toolStripSeparator2 = new ToolStripSeparator();
             btnCancel = new ToolStripButton();
+            cbxZoom = new ToolStripComboBox();
             printDocument1 = new System.Drawing.Printing.PrintDocument();
             preview = new UserPrintPreviewControl();
             toolStrip1.SuspendLayout();
@@ -55,7 +56,7 @@
             // 
             toolStrip1.AutoSize = false;
             toolStrip1.ImageScalingSize = new Size(24, 24);
-            toolStrip1.Items.AddRange(new ToolStripItem[] { btnPrint, btnPageSetup, toolStripSeparator1, btnZoom, btnFirst, btnPrev, txtStartPage, lbPageCount, btnNext, btnLast, toolStripSeparator2, btnCancel });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { btnPrint, btnPageSetup, toolStripSeparator1, btnZoom, cbxZoom, btnFirst, btnPrev, txtStartPage, lbPageCount, btnNext, btnLast, toolStripSeparator2, btnCancel });
             toolStrip1.Location = new Point(0, 0);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.Size = new Size(800, 40);
@@ -191,6 +192,11 @@
             btnCancel.Text = "Cancel";
             btnCancel.Click += btnCancel_Click;
             // 
+            // cbxZoom
+            // 
+            cbxZoom.Name = "cbxZoom";
+            cbxZoom.Size = new Size(75, 40);
+            // 
             // preview
             // 
             preview.AutoScroll = true;
@@ -239,5 +245,6 @@
         private System.Drawing.Printing.PrintDocument printDocument1;
         private UserPrintPreviewControl preview;
         private ToolStripLabel lbPageCount;
+        private ToolStripComboBox cbxZoom;
     }
 }
